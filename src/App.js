@@ -27,7 +27,6 @@ function App() {
   });
   const [results, setResults] = useState(null);
   const [showReveal, setShowReveal] = useState(false);
-  const [showTour, setShowTour] = useState(false);
   const [visitedSections, setVisitedSections] = useState(['overview']);
   const [showCelebration, setShowCelebration] = useState(false);
 
@@ -200,8 +199,8 @@ function App() {
       <div className="max-w-6xl mx-auto p-3 sm:p-6">
         {/* Guided Tour */}
         <GuidedTour 
-          onComplete={() => setShowTour(false)}
-          onSkip={() => setShowTour(false)}
+          onComplete={() => {}}
+          onSkip={() => {}}
         />
 
         {/* PWA Install Component */}

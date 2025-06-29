@@ -14,15 +14,6 @@ const ProgressTracker = ({ visitedSections = [], currentSection = '', assessment
   const completedSections = visitedSections.length;
   const progressPercentage = (completedSections / totalSections) * 100;
 
-  // Gullak fill levels
-  const getGullakFillLevel = () => {
-    if (progressPercentage >= 100) return 'full';
-    if (progressPercentage >= 75) return 'three-quarters';
-    if (progressPercentage >= 50) return 'half';
-    if (progressPercentage >= 25) return 'quarter';
-    return 'empty';
-  };
-
   // Check for new achievements
   useEffect(() => {
     const newAchievements = [];
