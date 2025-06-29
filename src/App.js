@@ -685,7 +685,7 @@ function App() {
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-amber-300 mb-2">Educational Use Only</h4>
+                  <h4 className="font-semibold text-amber-600 mb-2">Educational Use Only</h4>
                   <p className="text-secondary text-sm leading-relaxed">
                     This tool is designed exclusively for educational and research purposes to promote awareness about income inequality in India. 
                     All data is based on publicly available government statistics and peer-reviewed academic research. Results are for 
