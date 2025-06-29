@@ -675,9 +675,26 @@ function App() {
           </div>
         )}
 
-        {/* Branding Footer */}
+        {/* Enhanced Branding Footer with Legal Disclaimer */}
         <footer className="mt-12 sm:mt-16 border-t pt-6 sm:pt-8 pattern-block-print" style={{borderColor: 'var(--border-color)'}}>
-          <div className="text-center space-y-3 sm:space-y-4">
+          <div className="text-center space-y-4 sm:space-y-6">
+            {/* Educational Disclaimer */}
+            <div className="bg-amber-900/10 border border-amber-600/30 rounded-lg p-4 sm:p-6 max-w-4xl mx-auto">
+              <div className="flex items-start gap-3">
+                <div className="text-amber-400 mt-1">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold text-amber-300 mb-2">Educational Use Only</h4>
+                  <p className="text-secondary text-sm leading-relaxed">
+                    This tool is designed exclusively for educational and research purposes to promote awareness about income inequality in India. 
+                    All data is based on publicly available government statistics and peer-reviewed academic research. Results are for 
+                    illustrative purposes and should not be considered as financial, economic, or policy advice.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
             {/* Impact Mojo Branding */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
               <div className="text-amber-400 font-bold text-lg sm:text-xl">
@@ -707,9 +724,25 @@ function App() {
               </div>
             </div>
             
-            {/* MIT License */}
-            <div className="text-xs pt-2 sm:pt-3 border-t" style={{borderColor: 'var(--border-color)', color: 'var(--text-muted)'}}>
-              Open Source • MIT License • Educational Use
+            {/* Legal & Terms Reference */}
+            <div className="text-xs pt-3 sm:pt-4 border-t space-y-2" style={{borderColor: 'var(--border-color)', color: 'var(--text-muted)'}}>
+              <div>
+                Open Source • MIT License • Educational Use
+              </div>
+              <div>
+                Legal Terms, Privacy Policy & Disclaimers: As declared on{' '}
+                <a 
+                  href="https://www.impactmojo.in" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 transition-colors underline"
+                >
+                  impactmojo.in
+                </a>
+              </div>
+              <div className="text-xs opacity-75">
+                © 2025 Impact Mojo. This project is part of the Impact Mojo knowledge ecosystem.
+              </div>
             </div>
           </div>
         </footer>
