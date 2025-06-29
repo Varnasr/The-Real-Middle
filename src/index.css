@@ -678,3 +678,127 @@
     font-weight: 500;
   }
 }
+/* Mobile Responsive Fixes - Add this to your index.css */
+
+/* Enhanced mobile responsive positioning for buttons */
+@media (max-width: 768px) {
+  /* Move buttons down on mobile to avoid header overlap */
+  .theme-toggle-btn {
+    top: 1rem !important;
+    right: 4rem !important;
+    padding: 0.4rem !important;
+    z-index: 50;
+  }
+  
+  .pwa-install-btn {
+    top: 1rem !important;
+    right: 0.5rem !important;
+    padding: 0.4rem !important;
+    z-index: 50;
+  }
+  
+  .theme-toggle-btn svg,
+  .pwa-install-btn svg {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+  }
+  
+  /* Add top padding to main content to avoid button overlap */
+  .min-h-screen > div {
+    padding-top: 4rem !important;
+  }
+  
+  /* Adjust header spacing on mobile */
+  .text-center.mb-6.sm\:mb-8 {
+    margin-top: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Make sure header title has enough space */
+  .text-3xl.sm\:text-4xl.md\:text-5xl {
+    margin-top: 1rem !important;
+    font-size: 1.75rem !important;
+    line-height: 1.2;
+  }
+  
+  /* Adjust header description on mobile */
+  .text-lg.sm\:text-xl {
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+    padding: 0 1rem;
+  }
+}
+
+/* Extra small screens - stack buttons vertically */
+@media (max-width: 480px) {
+  .theme-toggle-btn {
+    top: 0.75rem !important;
+    right: 0.75rem !important;
+    padding: 0.35rem !important;
+  }
+  
+  .pwa-install-btn {
+    top: 3rem !important;
+    right: 0.75rem !important;
+    padding: 0.35rem !important;
+  }
+  
+  /* Even more top padding for very small screens */
+  .min-h-screen > div {
+    padding-top: 5rem !important;
+  }
+  
+  /* Smaller header on very small screens */
+  .text-3xl.sm\:text-4xl.md\:text-5xl {
+    font-size: 1.5rem !important;
+    margin-top: 0.5rem !important;
+  }
+  
+  .text-lg.sm\:text-xl {
+    font-size: 0.875rem !important;
+    padding: 0 0.75rem;
+  }
+}
+
+/* Landscape mobile orientation fixes */
+@media (max-width: 768px) and (orientation: landscape) {
+  .theme-toggle-btn {
+    top: 0.5rem !important;
+    right: 3.5rem !important;
+  }
+  
+  .pwa-install-btn {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+  
+  .min-h-screen > div {
+    padding-top: 3rem !important;
+  }
+}
+
+/* Safe area adjustments for modern mobile devices with notches */
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    .theme-toggle-btn {
+      top: max(1rem, env(safe-area-inset-top)) !important;
+    }
+    
+    .pwa-install-btn {
+      top: max(1rem, env(safe-area-inset-top)) !important;
+    }
+    
+    .min-h-screen > div {
+      padding-top: max(4rem, calc(env(safe-area-inset-top) + 3rem)) !important;
+    }
+  }
+}
+
+/* Progress tracker positioning fix on mobile */
+@media (max-width: 768px) {
+  .fixed.top-4.left-4 {
+    top: 4.5rem !important;
+    left: 0.75rem !important;
+    z-index: 30;
+  }
+}
