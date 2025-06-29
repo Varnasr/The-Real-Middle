@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import friendly, educational fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 :root {
   /* Dark theme variables (default) */
   --bg-primary: #0f172a;
@@ -10,36 +13,40 @@
   --bg-card: #1e293b;
   --bg-input: #334155;
   --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #64748b;
+  --text-secondary: #e2e8f0;
+  --text-muted: #cbd5e1;
   --border-color: #475569;
   --border-card: #334155;
   --accent-primary: #f59e0b;
   --accent-secondary: #d97706;
-  /* Enhanced pattern visibility - Much more visible now */
-  --pattern-opacity: 0.25;
-  --pattern-secondary: 0.15;
-  --pattern-tertiary: 0.08;
+  /* Traditional Indian colors for patterns */
+  --indian-saffron: rgba(255, 153, 51, 0.15);
+  --indian-orange: rgba(255, 103, 31, 0.12);
+  --indian-red: rgba(205, 92, 92, 0.08);
+  --indian-gold: rgba(255, 215, 0, 0.10);
+  --indian-maroon: rgba(128, 0, 0, 0.06);
 }
 
 [data-theme="light"] {
-  /* Light theme variables */
+  /* Light theme variables with MUCH better contrast */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #e2e8f0;
   --bg-card: #ffffff;
   --bg-input: #f1f5f9;
   --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
-  --border-card: #cbd5e1;
+  --text-secondary: #334155;
+  --text-muted: #475569;  /* Much darker for better visibility */
+  --border-color: #cbd5e1;
+  --border-card: #e2e8f0;
   --accent-primary: #d97706;
   --accent-secondary: #b45309;
-  /* Enhanced pattern visibility for light mode */
-  --pattern-opacity: 0.20;
-  --pattern-secondary: 0.12;
-  --pattern-tertiary: 0.06;
+  /* Traditional Indian colors for light mode patterns */
+  --indian-saffron: rgba(255, 153, 51, 0.12);
+  --indian-orange: rgba(255, 103, 31, 0.08);
+  --indian-red: rgba(205, 92, 92, 0.06);
+  --indian-gold: rgba(255, 215, 0, 0.08);
+  --indian-maroon: rgba(128, 0, 0, 0.04);
 }
 
 @layer base {
@@ -48,7 +55,7 @@
   }
   
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -58,6 +65,8 @@
     color: var(--text-primary);
     min-height: 100vh;
     transition: all 0.3s ease;
+    line-height: 1.6;
+    font-weight: 400;
   }
 
   code {
@@ -87,6 +96,7 @@
     box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
     position: relative;
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
   }
   
   .btn-primary::before {
@@ -115,6 +125,7 @@
     color: var(--text-primary);
     @apply font-semibold py-3 px-6 rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-center;
     border: 1px solid var(--border-color);
+    font-family: 'Poppins', sans-serif;
   }
   
   .btn-secondary:hover {
@@ -135,6 +146,7 @@
     color: var(--text-primary);
     border: 1px solid var(--border-color);
     @apply w-full p-3 rounded-lg min-h-[44px] text-base transition-all;
+    font-family: 'Inter', sans-serif;
   }
 
   .input-field:focus {
@@ -189,109 +201,129 @@
     transform: translateY(-1px);
   }
 
-  /* Enhanced Indian Pattern Backgrounds - Much More Visible */
+  /* Traditional Indian Pattern Backgrounds - Inspired by traditional art */
   .pattern-mandala {
     background-image: 
-      /* Large central mandala */
+      /* Central lotus mandala */
       radial-gradient(circle at center, 
-        transparent 15%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 15.5%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 16%, 
-        transparent 16.5%),
+        transparent 10%, 
+        var(--indian-saffron) 10.5%, 
+        var(--indian-saffron) 11%, 
+        transparent 11.5%),
       radial-gradient(circle at center, 
-        transparent 25%, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 25.5%, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 26%, 
-        transparent 26.5%),
+        transparent 18%, 
+        var(--indian-gold) 18.5%, 
+        var(--indian-gold) 19%, 
+        transparent 19.5%),
       radial-gradient(circle at center, 
-        transparent 35%, 
-        rgba(251, 191, 36, var(--pattern-tertiary)) 35.5%, 
-        rgba(251, 191, 36, var(--pattern-tertiary)) 36%, 
-        transparent 36.5%),
-      /* Decorative corner mandalas */
-      radial-gradient(circle at 20% 20%, rgba(251, 191, 36, var(--pattern-secondary)) 0%, transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(217, 119, 6, var(--pattern-secondary)) 0%, transparent 40%),
-      radial-gradient(circle at 80% 20%, rgba(251, 191, 36, var(--pattern-tertiary)) 0%, transparent 40%),
-      radial-gradient(circle at 20% 80%, rgba(217, 119, 6, var(--pattern-tertiary)) 0%, transparent 40%);
-    background-size: 200px 200px, 180px 180px, 160px 160px, 120px 120px, 120px 120px, 120px 120px, 120px 120px;
-    background-position: center, center, center, top left, bottom right, top right, bottom left;
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+        transparent 26%, 
+        var(--indian-orange) 26.5%, 
+        var(--indian-orange) 27%, 
+        transparent 27.5%),
+      /* Decorative corner mandalas with traditional 8-fold symmetry */
+      radial-gradient(circle at 15% 15%, var(--indian-saffron) 0%, transparent 30%),
+      radial-gradient(circle at 85% 85%, var(--indian-gold) 0%, transparent 30%),
+      radial-gradient(circle at 85% 15%, var(--indian-orange) 0%, transparent 25%),
+      radial-gradient(circle at 15% 85%, var(--indian-red) 0%, transparent 25%),
+      /* Traditional geometric patterns */
+      repeating-conic-gradient(from 0deg at center, 
+        transparent 0deg, 
+        var(--indian-maroon) 45deg, 
+        transparent 90deg);
+    background-size: 180px 180px, 160px 160px, 140px 140px, 100px 100px, 100px 100px, 100px 100px, 100px 100px, 400px 400px;
+    background-position: center, center, center, top left, bottom right, top right, bottom left, center;
   }
 
   .pattern-ikat {
     background-image: 
-      /* Diagonal ikat pattern */
+      /* Traditional ikat weaving pattern */
       linear-gradient(45deg, 
-        transparent 25%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 25%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 35%, 
-        transparent 35%, 
-        transparent 65%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 65%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 75%, 
-        transparent 75%),
+        transparent 20%, 
+        var(--indian-saffron) 20%, 
+        var(--indian-saffron) 40%, 
+        transparent 40%, 
+        transparent 60%, 
+        var(--indian-saffron) 60%, 
+        var(--indian-saffron) 80%, 
+        transparent 80%),
       linear-gradient(-45deg, 
-        transparent 25%, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 25%, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 35%, 
-        transparent 35%, 
-        transparent 65%, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 65%, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 75%, 
-        transparent 75%),
-      /* Vertical lines */
+        transparent 20%, 
+        var(--indian-orange) 20%, 
+        var(--indian-orange) 40%, 
+        transparent 40%, 
+        transparent 60%, 
+        var(--indian-orange) 60%, 
+        var(--indian-orange) 80%, 
+        transparent 80%),
+      /* Traditional diamond weave */
       repeating-linear-gradient(90deg, 
         transparent, 
-        transparent 30px, 
-        rgba(251, 191, 36, var(--pattern-tertiary)) 30px, 
-        rgba(251, 191, 36, var(--pattern-tertiary)) 32px);
-    background-size: 60px 60px, 60px 60px, 100px 100px;
+        transparent 25px, 
+        var(--indian-gold) 25px, 
+        var(--indian-gold) 27px),
+      /* Traditional border pattern */
+      repeating-linear-gradient(0deg, 
+        transparent, 
+        transparent 25px, 
+        var(--indian-red) 25px, 
+        var(--indian-red) 27px);
+    background-size: 50px 50px, 50px 50px, 80px 80px, 80px 80px;
   }
 
   .pattern-block-print {
     background-image: 
-      /* Grid pattern base */
+      /* Traditional block print grid */
       repeating-linear-gradient(0deg, 
         transparent, 
-        transparent 20px, 
-        rgba(251, 191, 36, var(--pattern-secondary)) 20px, 
-        rgba(251, 191, 36, var(--pattern-secondary)) 22px),
+        transparent 18px, 
+        var(--indian-saffron) 18px, 
+        var(--indian-saffron) 20px),
       repeating-linear-gradient(90deg, 
         transparent, 
-        transparent 20px, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 20px, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 22px),
-      /* Block print motifs */
-      radial-gradient(circle at 30% 30%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 3px, 
-        transparent 4px),
-      radial-gradient(circle at 70% 70%, 
-        rgba(217, 119, 6, var(--pattern-opacity)) 2px, 
-        transparent 3px);
-    background-size: 80px 80px, 80px 80px, 40px 40px, 40px 40px;
-    background-position: 0 0, 0 0, 0 0, 20px 20px;
+        transparent 18px, 
+        var(--indian-orange) 18px, 
+        var(--indian-orange) 20px),
+      /* Traditional floral motifs */
+      radial-gradient(circle at 25% 25%, 
+        var(--indian-gold) 2px, 
+        transparent 3px),
+      radial-gradient(circle at 75% 75%, 
+        var(--indian-red) 2px, 
+        transparent 3px),
+      /* Traditional paisley dots */
+      radial-gradient(ellipse 4px 6px at 50% 30%, 
+        var(--indian-maroon) 0%, 
+        transparent 50%);
+    background-size: 70px 70px, 70px 70px, 35px 35px, 35px 35px, 35px 35px;
+    background-position: 0 0, 0 0, 0 0, 17px 17px, 8px 25px;
   }
 
   .pattern-paisley {
     background-image: 
-      /* Large paisley shapes */
-      radial-gradient(ellipse 35px 50px at 40% 40%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 0%, 
-        rgba(251, 191, 36, var(--pattern-opacity)) 40%, 
+      /* Traditional paisley shapes */
+      radial-gradient(ellipse 30px 45px at 35% 35%, 
+        var(--indian-saffron) 0%, 
+        var(--indian-saffron) 35%, 
         transparent 50%),
-      radial-gradient(ellipse 30px 45px at 60% 60%, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 0%, 
-        rgba(217, 119, 6, var(--pattern-secondary)) 40%, 
+      radial-gradient(ellipse 25px 40px at 65% 65%, 
+        var(--indian-gold) 0%, 
+        var(--indian-gold) 35%, 
         transparent 50%),
-      /* Small decorative dots */
-      radial-gradient(circle at 25% 75%, 
-        rgba(251, 191, 36, var(--pattern-tertiary)) 2px, 
-        transparent 3px),
-      radial-gradient(circle at 75% 25%, 
-        rgba(217, 119, 6, var(--pattern-tertiary)) 2px, 
-        transparent 3px);
-    background-size: 120px 120px, 100px 100px, 30px 30px, 30px 30px;
-    background-position: 0 0, 60px 60px, 0 0, 15px 15px;
+      /* Traditional vine patterns */
+      repeating-linear-gradient(30deg, 
+        transparent, 
+        transparent 40px, 
+        var(--indian-orange) 40px, 
+        var(--indian-orange) 41px),
+      /* Traditional dots and flowers */
+      radial-gradient(circle at 20% 80%, 
+        var(--indian-red) 1.5px, 
+        transparent 2px),
+      radial-gradient(circle at 80% 20%, 
+        var(--indian-maroon) 1.5px, 
+        transparent 2px);
+    background-size: 100px 100px, 80px 80px, 120px 120px, 25px 25px, 25px 25px;
+    background-position: 0 0, 50px 50px, 0 0, 0 0, 12px 12px;
   }
 
   /* Enhanced Rupee Currency Animations - Much Larger and More Visible */
@@ -568,8 +600,8 @@
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 30% 30%, rgba(251, 191, 36, 0.1) 20%, transparent 50%),
-      radial-gradient(circle at 70% 70%, rgba(217, 119, 6, 0.08) 20%, transparent 50%);
+      radial-gradient(circle at 30% 30%, var(--indian-saffron) 20%, transparent 50%),
+      radial-gradient(circle at 70% 70%, var(--indian-gold) 20%, transparent 50%);
     pointer-events: none;
     z-index: 1;
   }
@@ -590,7 +622,7 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
   }
 
-  /* Text color overrides for theme */
+  /* Text color classes with proper contrast */
   .text-primary {
     color: var(--text-primary);
   }
@@ -601,6 +633,19 @@
   
   .text-muted {
     color: var(--text-muted);
+    font-weight: 500; /* Slightly bolder for better readability */
+  }
+
+  /* Enhanced typography for better readability */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  p, span, div {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
   }
 
   /* Light mode specific adjustments */
@@ -608,7 +653,7 @@
   [data-theme="light"] .pattern-ikat,
   [data-theme="light"] .pattern-block-print,
   [data-theme="light"] .pattern-paisley {
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   /* Dark mode shadow enhancements */
@@ -620,5 +665,16 @@
   [data-theme="light"] .card {
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--border-card);
+  }
+
+  /* Light mode text contrast fixes */
+  [data-theme="light"] .text-muted {
+    color: #475569; /* Much darker grey for better visibility */
+    font-weight: 500;
+  }
+
+  [data-theme="light"] .text-secondary {
+    color: #334155; /* Darker secondary text */
+    font-weight: 500;
   }
 }

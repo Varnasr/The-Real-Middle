@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -9,37 +9,37 @@
     <meta name="keywords" content="India, income inequality, middle class, economic reality, PLFS, academic research, development economics, poverty, wealth distribution" />
     <meta name="author" content="The Real Middle Game - Impact Mojo" />
     
+    <!-- Google Fonts - Friendly, Educational Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
     <!-- PWA Manifest -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon-192x192.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/icon-152x152.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="%PUBLIC_URL%/icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="%PUBLIC_URL%/icon-120x120.png" />
+    <!-- Apple Touch Icons (using data URLs to avoid 404 errors) -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjZjU5ZTBiIiByeD0iMjQiLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+Cjxwb2x5Z29uIHBvaW50cz0iMTMsNCAzLDQgMywyMCAxMCwyMCAxMCwxNiAxOCwxNiIvPgo8cGF0aCBkPSJNMTAsOWgxMCIvPgo8L3N2Zz4KPC9zdmc+" />
     
-    <!-- Apple PWA Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Mobile PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Real Middle" />
     
     <!-- Microsoft Tiles -->
     <meta name="msapplication-TileColor" content="#f59e0b" />
-    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/icon-144x144.png" />
+    <meta name="msapplication-TileImage" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjE0NCIgdmlld0JveD0iMCAwIDE0NCAxNDQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNDQiIGhlaWdodD0iMTQ0IiBmaWxsPSIjZjU5ZTBiIi8+KPHN2ZyB4PSIzNiIgeT0iMzYiIHdpZHRoPSI3MiIgaGVpZ2h0PSI3MiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiPgo8cG9seWdvbiBwb2ludHM9IjEzLDQgMyw0IDMsMjAgMTAsMjAgMTAsMTYgMTgsMTYiLz4KPHBhdGggZD0iTTEwLDloMTAiLz4KPC9zdmc+Cjwvc3ZnPg==" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="The Real Middle - India Income Reality Check" />
     <meta property="og:description" content="Think you're middle class? Discover where you really stand in India's income distribution with this interactive reality check." />
-    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
-    <meta property="og:url" content="https://the-real-middle.netlify.app" />
+    <meta property="og:url" content="https://therealmiddle.netlify.app" />
     <meta property="og:site_name" content="The Real Middle" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="The Real Middle - India Income Reality Check" />
     <meta property="twitter:description" content="Think you're middle class? Discover where you really stand in India's income distribution." />
-    <meta property="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
     <meta property="twitter:creator" content="@impactmojo" />
     
     <!-- Additional SEO -->
@@ -50,7 +50,6 @@
     <meta name="rating" content="general" />
     
     <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     
     <!-- Structured Data for SEO -->
@@ -60,7 +59,7 @@
       "@type": "WebApplication",
       "name": "The Real Middle",
       "description": "Interactive tool to discover your real economic position in India's income distribution",
-      "url": "https://the-real-middle.netlify.app",
+      "url": "https://therealmiddle.netlify.app",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",
       "author": {
@@ -90,26 +89,12 @@
   </head>
   <body>
     <noscript>
-      <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
-        <h1>The Real Middle</h1>
+      <div style="padding: 20px; text-align: center; font-family: 'Inter', Arial, sans-serif; background: #f8fafc; color: #1e293b;">
+        <h1 style="color: #f59e0b; font-family: 'Poppins', Arial, sans-serif;">The Real Middle</h1>
         <p>You need to enable JavaScript to run this interactive app about income inequality in India.</p>
         <p>This tool helps you discover where you really stand in India's income distribution.</p>
       </div>
     </noscript>
     <div id="root"></div>
-    
-    <!-- Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, function(err) {
-              console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-      }
-    </script>
   </body>
 </html>
