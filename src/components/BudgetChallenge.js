@@ -54,7 +54,7 @@ const BudgetChallenge = ({ results }) => {
           <div className="space-y-3 text-lg">
             <div className="flex justify-between"><span className="text-slate-200">Total Income:</span><span className="text-green-400 font-bold">₹{selectedIncome.toLocaleString()}</span></div>
             <div className="flex justify-between"><span className="text-slate-200">Allocated:</span><span className="text-blue-400 font-bold">₹{totalAllocated.toLocaleString()}</span></div>
-            <div className="flex justify-between border-t border-slate-600 pt-3"><span className="text-slate-200">Remaining:</span><span className={remaining >= 0 ? "text-green-400" : "text-red-400"} + " font-bold"}>₹{remaining.toLocaleString()}</span></div>
+            <div className="flex justify-between border-t border-slate-600 pt-3"><span className="text-slate-200">Remaining:</span><span className={`${remaining >= 0 ? "text-green-400" : "text-red-400"} font-bold`}>₹{remaining.toLocaleString()}</span></div>
             <div className="flex justify-between"><span className="text-slate-200">Minimum Needed:</span><span className="text-red-400 font-bold">₹{totalMinimum.toLocaleString()}</span></div>
             
             {isImpossible && (
