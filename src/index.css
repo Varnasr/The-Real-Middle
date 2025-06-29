@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Dark theme variables (default) */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-card: #1e293b;
+  --bg-input: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --border-color: #475569;
+  --border-card: #334155;
+  --accent-primary: #f59e0b;
+  --accent-secondary: #d97706;
+  --pattern-opacity: 0.08;
+  --pattern-secondary: 0.04;
+}
+
+[data-theme="light"] {
+  /* Light theme variables */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-input: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --border-card: #cbd5e1;
+  --accent-primary: #d97706;
+  --accent-secondary: #b45309;
+  --pattern-opacity: 0.12;
+  --pattern-secondary: 0.08;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -13,11 +49,11 @@
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Prevent horizontal scroll on mobile */
     overflow-x: hidden;
-    /* Indian-inspired background */
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+    color: var(--text-primary);
     min-height: 100vh;
+    transition: all 0.3s ease;
   }
 
   code {
@@ -35,97 +71,120 @@
     input[type="text"],
     select {
       min-height: 44px;
-      font-size: 16px; /* Prevents zoom on iOS */
+      font-size: 16px;
     }
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
-    /* Better mobile touch target */
-    @apply min-h-[44px] flex items-center justify-center;
-    /* Indian-inspired gradient */
-    background: linear-gradient(135deg, #d97706 0%, #f59e0b  50%, #fbbf24 100%);
+    background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 50%, #fbbf24 100%);
+    @apply text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-center;
     box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
   }
   
   .btn-primary:hover {
-    background: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+    background: linear-gradient(135deg, #b45309 0%, var(--accent-secondary) 50%, var(--accent-primary) 100%);
     box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
     transform: translateY(-1px);
   }
   
   .btn-secondary {
-    @apply bg-slate-600 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
-    /* Better mobile touch target */
-    @apply min-h-[44px] flex items-center justify-center;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    @apply font-semibold py-3 px-6 rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-center;
+    border: 1px solid var(--border-color);
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--border-card);
+    transform: translateY(-1px);
   }
   
   .card {
-    @apply bg-slate-800 border border-slate-700 rounded-lg shadow-xl p-4 sm:p-6;
-    /* Indian-inspired subtle pattern background */
-    background-image: 
-      radial-gradient(circle at 25% 25%, rgba(251, 191, 36, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(217, 119, 6, 0.02) 0%, transparent 50%);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    @apply rounded-lg shadow-xl p-4 sm:p-6;
     backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
   }
   
   .input-field {
-    @apply w-full p-3 border border-slate-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-slate-700 text-white;
-    /* Improve mobile experience */
-    @apply min-h-[44px] text-base;
-    /* Indian-inspired focus effect */
-    transition: all 0.3s ease;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    @apply w-full p-3 rounded-lg min-h-[44px] text-base transition-all;
   }
 
   .input-field:focus {
+    outline: none;
+    border-color: var(--accent-primary);
     box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2), 0 0 15px rgba(251, 191, 36, 0.1);
   }
 
-  /* Indian Pattern Backgrounds */
+  /* Theme Toggle Button */
+  .theme-toggle-btn {
+    background-color: var(--bg-card);
+    border-color: var(--border-card);
+  }
+
+  .theme-toggle-btn:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+  }
+
+  /* Enhanced Indian Pattern Backgrounds - More Visible */
   .pattern-mandala {
-    background-image: radial-gradient(circle at center, 
-      transparent 20%, 
-      rgba(251, 191, 36, 0.1) 20.5%, 
-      rgba(251, 191, 36, 0.1) 21%, 
-      transparent 21.5%),
-    radial-gradient(circle at center, 
-      transparent 40%, 
-      rgba(217, 119, 6, 0.05) 40.5%, 
-      rgba(217, 119, 6, 0.05) 41%, 
-      transparent 41.5%);
-    background-size: 60px 60px, 120px 120px;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(251, 191, 36, var(--pattern-opacity)) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(217, 119, 6, var(--pattern-secondary)) 0%, transparent 50%),
+      radial-gradient(circle at center, 
+        transparent 20%, 
+        rgba(251, 191, 36, var(--pattern-secondary)) 20.5%, 
+        rgba(251, 191, 36, var(--pattern-secondary)) 21%, 
+        transparent 21.5%),
+      radial-gradient(circle at center, 
+        transparent 40%, 
+        rgba(217, 119, 6, var(--pattern-opacity)) 40.5%, 
+        rgba(217, 119, 6, var(--pattern-opacity)) 41%, 
+        transparent 41.5%);
+    background-size: 150px 150px, 200px 200px, 60px 60px, 120px 120px;
   }
 
   .pattern-ikat {
     background-image: 
-      linear-gradient(45deg, transparent 30%, rgba(251, 191, 36, 0.05) 30%, rgba(251, 191, 36, 0.05) 70%, transparent 70%),
-      linear-gradient(-45deg, transparent 30%, rgba(217, 119, 6, 0.03) 30%, rgba(217, 119, 6, 0.03) 70%, transparent 70%);
-    background-size: 40px 40px, 40px 40px;
+      linear-gradient(45deg, transparent 30%, rgba(251, 191, 36, var(--pattern-opacity)) 30%, rgba(251, 191, 36, var(--pattern-opacity)) 70%, transparent 70%),
+      linear-gradient(-45deg, transparent 30%, rgba(217, 119, 6, var(--pattern-secondary)) 30%, rgba(217, 119, 6, var(--pattern-secondary)) 70%, transparent 70%),
+      repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(251, 191, 36, calc(var(--pattern-opacity) * 0.5)) 20px, rgba(251, 191, 36, calc(var(--pattern-opacity) * 0.5)) 22px);
+    background-size: 40px 40px, 40px 40px, 80px 80px;
   }
 
   .pattern-block-print {
     background-image: 
-      repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(251, 191, 36, 0.02) 10px, rgba(251, 191, 36, 0.02) 20px),
-      repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(217, 119, 6, 0.02) 10px, rgba(217, 119, 6, 0.02) 20px);
+      repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(251, 191, 36, var(--pattern-secondary)) 15px, rgba(251, 191, 36, var(--pattern-secondary)) 17px),
+      repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(217, 119, 6, var(--pattern-secondary)) 15px, rgba(217, 119, 6, var(--pattern-secondary)) 17px),
+      radial-gradient(circle at 50% 50%, rgba(251, 191, 36, var(--pattern-opacity)) 2px, transparent 2px);
+    background-size: 60px 60px, 60px 60px, 30px 30px;
   }
 
   .pattern-paisley {
-    background-image: radial-gradient(ellipse 20px 30px at 50% 50%, rgba(251, 191, 36, 0.04) 0%, transparent 50%);
-    background-size: 80px 80px;
-    background-position: 0 0, 40px 40px;
+    background-image: 
+      radial-gradient(ellipse 25px 35px at 30% 40%, rgba(251, 191, 36, var(--pattern-opacity)) 0%, transparent 50%),
+      radial-gradient(ellipse 20px 30px at 70% 60%, rgba(217, 119, 6, var(--pattern-secondary)) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(251, 191, 36, calc(var(--pattern-opacity) * 0.5)) 1px, transparent 1px);
+    background-size: 80px 80px, 60px 60px, 20px 20px;
+    background-position: 0 0, 40px 40px, 0 0;
   }
 
   /* Rupee Currency Animations */
   @keyframes rupee-float {
     0%, 100% { 
       transform: translateY(0px) rotate(0deg); 
-      opacity: 0.8;
+      opacity: 0.6;
     }
     50% { 
       transform: translateY(-10px) rotate(5deg); 
-      opacity: 1;
+      opacity: 0.8;
     }
   }
 
@@ -146,11 +205,6 @@
     }
   }
 
-  @keyframes gullak-fill {
-    0% { height: 0%; }
-    100% { height: var(--fill-height, 50%); }
-  }
-
   @keyframes slide-in-left {
     0% { 
       transform: translateX(-100%); 
@@ -164,10 +218,12 @@
 
   .rupee-float {
     animation: rupee-float 3s ease-in-out infinite;
+    color: var(--accent-primary);
   }
 
   .rupee-drop {
     animation: rupee-drop 4s linear infinite;
+    color: var(--accent-primary);
   }
 
   .animate-slide-in-left {
@@ -185,7 +241,6 @@
       @apply py-3 px-4 text-sm;
     }
     
-    /* Better spacing for mobile */
     .space-y-6 > * + * {
       @apply mt-4;
     }
@@ -200,32 +255,29 @@
     @apply w-full;
   }
 
-  /* Improve range input styling for mobile */
+  /* Improve range input styling */
   input[type="range"] {
-    @apply h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer;
-    @apply min-h-[44px]; /* Better touch target */
-    background: linear-gradient(to right, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
+    @apply h-2 rounded-lg appearance-none cursor-pointer min-h-[44px];
+    background: linear-gradient(to right, var(--accent-secondary) 0%, var(--accent-primary) 50%, #fbbf24 100%);
   }
 
   input[type="range"]::-webkit-slider-thumb {
-    @apply appearance-none w-5 h-5 bg-amber-500 rounded-full cursor-pointer;
+    @apply appearance-none w-5 h-5 rounded-full cursor-pointer;
+    background-color: var(--accent-primary);
     box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
   }
 
   input[type="range"]::-moz-range-thumb {
-    @apply w-5 h-5 bg-amber-500 rounded-full cursor-pointer border-0;
+    @apply w-5 h-5 rounded-full cursor-pointer border-0;
+    background-color: var(--accent-primary);
     box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
   }
 
-  /* Gullak Progress Indicator */
-  .gullak-progress {
-    position: relative;
-    width: 40px;
-    height: 40px;
-  }
-
-  .gullak-fill {
-    animation: gullak-fill 1s ease-out;
+  /* Progress Tracker Updates */
+  .progress-tracker {
+    background-color: var(--bg-card);
+    border-color: var(--border-card);
+    color: var(--text-primary);
   }
 
   /* Indian-inspired loading animation */
@@ -233,7 +285,7 @@
     width: 40px;
     height: 40px;
     border: 3px solid rgba(251, 191, 36, 0.1);
-    border-top: 3px solid #fbbf24;
+    border-top: 3px solid var(--accent-primary);
     border-radius: 50%;
     animation: mandala-spin 1s linear infinite;
   }
@@ -243,53 +295,35 @@
     100% { transform: rotate(360deg); }
   }
 
-  /* Mobile keyboard optimizations */
-  @media (max-width: 768px) {
-    /* Prevent viewport jumping when keyboard appears */
-    .fixed-viewport {
-      height: 100vh;
-      height: 100dvh; /* Dynamic viewport height for modern browsers */
-    }
-  }
-
-  /* Loading states for better UX */
+  /* Loading states */
   .loading {
     @apply opacity-50 pointer-events-none;
   }
 
-  /* Improved focus states for accessibility */
+  /* Improved focus states */
   button:focus,
   input:focus,
   select:focus {
-    @apply outline-none ring-2 ring-amber-500 ring-offset-2 ring-offset-slate-900;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-primary), 0 0 0 4px rgba(251, 191, 36, 0.1);
   }
 
-  /* Better scrollbar styling with Indian colors */
+  /* Better scrollbar styling */
   ::-webkit-scrollbar {
     @apply w-2;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-slate-800;
+    background-color: var(--bg-secondary);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #d97706, #f59e0b);
+    background: linear-gradient(to bottom, var(--accent-secondary), var(--accent-primary));
     @apply rounded;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #b45309, #d97706);
-  }
-
-  /* Celebration effects */
-  .celebration-rupee {
-    position: absolute;
-    color: #fbbf24;
-    font-size: 1.5rem;
-    font-weight: bold;
-    pointer-events: none;
-    z-index: 1000;
+    background: linear-gradient(to bottom, #b45309, var(--accent-secondary));
   }
 
   /* Achievement badge styles */
@@ -301,13 +335,18 @@
 
   /* Tour modal enhancements */
   .tour-modal {
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: var(--bg-card);
+    border-color: var(--border-card);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  [data-theme="light"] .tour-modal {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
   }
 
   /* PWA Install button styling */
   .pwa-install-btn {
-    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+    background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
     box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
     transition: all 0.3s ease;
   }
@@ -315,5 +354,37 @@
   .pwa-install-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+  }
+
+  /* Text color overrides for theme */
+  .text-primary {
+    color: var(--text-primary);
+  }
+  
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  /* Light mode specific adjustments */
+  [data-theme="light"] .pattern-mandala,
+  [data-theme="light"] .pattern-ikat,
+  [data-theme="light"] .pattern-block-print,
+  [data-theme="light"] .pattern-paisley {
+    opacity: 0.8;
+  }
+
+  /* Dark mode shadow enhancements */
+  [data-theme="dark"] .card {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Light mode shadow adjustments */
+  [data-theme="light"] .card {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-card);
   }
 }

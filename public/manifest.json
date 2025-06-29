@@ -11,69 +11,17 @@
   "lang": "en-US",
   "dir": "ltr",
   "categories": ["education", "finance", "social"],
-  "screenshots": [
-    {
-      "src": "screenshot-wide.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "The Real Middle - Income Distribution Analysis"
-    },
-    {
-      "src": "screenshot-narrow.png", 
-      "sizes": "750x1334",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "The Real Middle - Mobile Experience"
-    }
-  ],
   "icons": [
     {
-      "src": "icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-96x96.png",
-      "sizes": "96x96", 
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-192x192.png",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjZjU5ZTBiIiByeD0iMjQiLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+Cjxwb2x5Z29uIHBvaW50cz0iMTMsNCAzLDQgMywyMCAxMCwyMCAxMCwxNiAxOCwxNiIvPgo8cGF0aCBkPSJNMTAsOWgxMCIvPgo8L3N2Zz4KPC9zdmc+",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512x512.png",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSIjZjU5ZTBiIiByeD0iNjQiLz4KPHN2ZyB4PSIxMjgiIHk9IjEyOCIgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgo8cG9seWdvbiBwb2ludHM9IjEzLDQgMyw0IDMsMjAgMTAsMjAgMTAsMTYgMTgsMTYiLz4KPHBhdGggZD0iTTEwLDloMTAiLz4KPC9zdmc+Cjwvc3ZnPg==",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ],
@@ -82,38 +30,8 @@
       "name": "Quick Assessment",
       "short_name": "Assess",
       "description": "Jump straight to income assessment",
-      "url": "/?quick=true",
-      "icons": [
-        {
-          "src": "shortcut-assessment.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Income Comparison",
-      "short_name": "Compare",
-      "description": "Compare incomes between different roles",
-      "url": "/?feature=comparison",
-      "icons": [
-        {
-          "src": "shortcut-comparison.png",
-          "sizes": "192x192", 
-          "type": "image/png"
-        }
-      ]
+      "url": "/?quick=true"
     }
   ],
-  "share_target": {
-    "action": "/share",
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    }
-  },
   "prefer_related_applications": false
 }
