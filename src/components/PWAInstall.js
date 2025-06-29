@@ -81,14 +81,14 @@ const PWAInstall = () => {
 
   return (
     <>
-      {/* Header Install Button */}
+      {/* Header Install Button - Now properly aligned with theme toggle */}
       {(deferredPrompt || isIOS) && !showInstallBanner && (
         <button
           onClick={handleInstallClick}
-          className="fixed top-4 right-4 z-40 bg-amber-600 hover:bg-amber-700 text-white p-2 rounded-lg shadow-lg transition-all duration-200 sm:p-3"
+          className="fixed top-4 right-4 z-40 bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-lg shadow-lg transition-all duration-200 hover:scale-105 pwa-install-btn"
           title="Install App"
         >
-          <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+          <Download className="w-5 h-5" />
         </button>
       )}
 

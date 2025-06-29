@@ -26,7 +26,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-4 right-16 z-40 p-2 rounded-lg border transition-all duration-300 theme-toggle-btn"
+      className="fixed top-4 right-20 z-40 p-3 rounded-lg border transition-all duration-300 theme-toggle-btn shadow-lg hover:scale-105"
       title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
       {isDark ? (

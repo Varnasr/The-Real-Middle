@@ -16,8 +16,10 @@
   --border-card: #334155;
   --accent-primary: #f59e0b;
   --accent-secondary: #d97706;
-  --pattern-opacity: 0.08;
-  --pattern-secondary: 0.04;
+  /* Enhanced pattern visibility - Much more visible now */
+  --pattern-opacity: 0.25;
+  --pattern-secondary: 0.15;
+  --pattern-tertiary: 0.08;
 }
 
 [data-theme="light"] {
@@ -34,8 +36,10 @@
   --border-card: #cbd5e1;
   --accent-primary: #d97706;
   --accent-secondary: #b45309;
-  --pattern-opacity: 0.12;
-  --pattern-secondary: 0.08;
+  /* Enhanced pattern visibility for light mode */
+  --pattern-opacity: 0.20;
+  --pattern-secondary: 0.12;
+  --pattern-tertiary: 0.06;
 }
 
 @layer base {
@@ -81,12 +85,29 @@
     background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 50%, #fbbf24 100%);
     @apply text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-center;
     box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
   }
   
   .btn-primary:hover {
     background: linear-gradient(135deg, #b45309 0%, var(--accent-secondary) 50%, var(--accent-primary) 100%);
     box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
     transform: translateY(-1px);
+  }
+  
+  .btn-primary:hover::before {
+    left: 100%;
   }
   
   .btn-secondary {
@@ -122,85 +143,207 @@
     box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2), 0 0 15px rgba(251, 191, 36, 0.1);
   }
 
-  /* Theme Toggle Button */
+  /* Enhanced Theme Toggle Button */
   .theme-toggle-btn {
     background-color: var(--bg-card);
     border-color: var(--border-card);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
   }
 
   .theme-toggle-btn:hover {
     background-color: var(--bg-tertiary);
     border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(251, 191, 36, 0.3);
   }
 
-  /* Enhanced Indian Pattern Backgrounds - More Visible */
+  .theme-toggle-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  .theme-toggle-btn:hover svg {
+    transform: rotate(180deg);
+  }
+
+  /* Enhanced PWA Install Button */
+  .pwa-install-btn {
+    background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .pwa-install-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+    background: linear-gradient(135deg, #b45309 0%, var(--accent-secondary) 100%);
+  }
+
+  .pwa-install-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  .pwa-install-btn:hover svg {
+    transform: translateY(-1px);
+  }
+
+  /* Enhanced Indian Pattern Backgrounds - Much More Visible */
   .pattern-mandala {
     background-image: 
-      radial-gradient(circle at 25% 25%, rgba(251, 191, 36, var(--pattern-opacity)) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(217, 119, 6, var(--pattern-secondary)) 0%, transparent 50%),
+      /* Large central mandala */
       radial-gradient(circle at center, 
-        transparent 20%, 
-        rgba(251, 191, 36, var(--pattern-secondary)) 20.5%, 
-        rgba(251, 191, 36, var(--pattern-secondary)) 21%, 
-        transparent 21.5%),
+        transparent 15%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 15.5%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 16%, 
+        transparent 16.5%),
       radial-gradient(circle at center, 
-        transparent 40%, 
-        rgba(217, 119, 6, var(--pattern-opacity)) 40.5%, 
-        rgba(217, 119, 6, var(--pattern-opacity)) 41%, 
-        transparent 41.5%);
-    background-size: 150px 150px, 200px 200px, 60px 60px, 120px 120px;
+        transparent 25%, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 25.5%, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 26%, 
+        transparent 26.5%),
+      radial-gradient(circle at center, 
+        transparent 35%, 
+        rgba(251, 191, 36, var(--pattern-tertiary)) 35.5%, 
+        rgba(251, 191, 36, var(--pattern-tertiary)) 36%, 
+        transparent 36.5%),
+      /* Decorative corner mandalas */
+      radial-gradient(circle at 20% 20%, rgba(251, 191, 36, var(--pattern-secondary)) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(217, 119, 6, var(--pattern-secondary)) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(251, 191, 36, var(--pattern-tertiary)) 0%, transparent 40%),
+      radial-gradient(circle at 20% 80%, rgba(217, 119, 6, var(--pattern-tertiary)) 0%, transparent 40%);
+    background-size: 200px 200px, 180px 180px, 160px 160px, 120px 120px, 120px 120px, 120px 120px, 120px 120px;
+    background-position: center, center, center, top left, bottom right, top right, bottom left;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   }
 
   .pattern-ikat {
     background-image: 
-      linear-gradient(45deg, transparent 30%, rgba(251, 191, 36, var(--pattern-opacity)) 30%, rgba(251, 191, 36, var(--pattern-opacity)) 70%, transparent 70%),
-      linear-gradient(-45deg, transparent 30%, rgba(217, 119, 6, var(--pattern-secondary)) 30%, rgba(217, 119, 6, var(--pattern-secondary)) 70%, transparent 70%),
-      repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(251, 191, 36, calc(var(--pattern-opacity) * 0.5)) 20px, rgba(251, 191, 36, calc(var(--pattern-opacity) * 0.5)) 22px);
-    background-size: 40px 40px, 40px 40px, 80px 80px;
+      /* Diagonal ikat pattern */
+      linear-gradient(45deg, 
+        transparent 25%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 25%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 35%, 
+        transparent 35%, 
+        transparent 65%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 65%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 75%, 
+        transparent 75%),
+      linear-gradient(-45deg, 
+        transparent 25%, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 25%, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 35%, 
+        transparent 35%, 
+        transparent 65%, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 65%, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 75%, 
+        transparent 75%),
+      /* Vertical lines */
+      repeating-linear-gradient(90deg, 
+        transparent, 
+        transparent 30px, 
+        rgba(251, 191, 36, var(--pattern-tertiary)) 30px, 
+        rgba(251, 191, 36, var(--pattern-tertiary)) 32px);
+    background-size: 60px 60px, 60px 60px, 100px 100px;
   }
 
   .pattern-block-print {
     background-image: 
-      repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(251, 191, 36, var(--pattern-secondary)) 15px, rgba(251, 191, 36, var(--pattern-secondary)) 17px),
-      repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(217, 119, 6, var(--pattern-secondary)) 15px, rgba(217, 119, 6, var(--pattern-secondary)) 17px),
-      radial-gradient(circle at 50% 50%, rgba(251, 191, 36, var(--pattern-opacity)) 2px, transparent 2px);
-    background-size: 60px 60px, 60px 60px, 30px 30px;
+      /* Grid pattern base */
+      repeating-linear-gradient(0deg, 
+        transparent, 
+        transparent 20px, 
+        rgba(251, 191, 36, var(--pattern-secondary)) 20px, 
+        rgba(251, 191, 36, var(--pattern-secondary)) 22px),
+      repeating-linear-gradient(90deg, 
+        transparent, 
+        transparent 20px, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 20px, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 22px),
+      /* Block print motifs */
+      radial-gradient(circle at 30% 30%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 3px, 
+        transparent 4px),
+      radial-gradient(circle at 70% 70%, 
+        rgba(217, 119, 6, var(--pattern-opacity)) 2px, 
+        transparent 3px);
+    background-size: 80px 80px, 80px 80px, 40px 40px, 40px 40px;
+    background-position: 0 0, 0 0, 0 0, 20px 20px;
   }
 
   .pattern-paisley {
     background-image: 
-      radial-gradient(ellipse 25px 35px at 30% 40%, rgba(251, 191, 36, var(--pattern-opacity)) 0%, transparent 50%),
-      radial-gradient(ellipse 20px 30px at 70% 60%, rgba(217, 119, 6, var(--pattern-secondary)) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, rgba(251, 191, 36, calc(var(--pattern-opacity) * 0.5)) 1px, transparent 1px);
-    background-size: 80px 80px, 60px 60px, 20px 20px;
-    background-position: 0 0, 40px 40px, 0 0;
+      /* Large paisley shapes */
+      radial-gradient(ellipse 35px 50px at 40% 40%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 0%, 
+        rgba(251, 191, 36, var(--pattern-opacity)) 40%, 
+        transparent 50%),
+      radial-gradient(ellipse 30px 45px at 60% 60%, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 0%, 
+        rgba(217, 119, 6, var(--pattern-secondary)) 40%, 
+        transparent 50%),
+      /* Small decorative dots */
+      radial-gradient(circle at 25% 75%, 
+        rgba(251, 191, 36, var(--pattern-tertiary)) 2px, 
+        transparent 3px),
+      radial-gradient(circle at 75% 25%, 
+        rgba(217, 119, 6, var(--pattern-tertiary)) 2px, 
+        transparent 3px);
+    background-size: 120px 120px, 100px 100px, 30px 30px, 30px 30px;
+    background-position: 0 0, 60px 60px, 0 0, 15px 15px;
   }
 
-  /* Rupee Currency Animations */
+  /* Enhanced Rupee Currency Animations - Much Larger and More Visible */
   @keyframes rupee-float {
     0%, 100% { 
-      transform: translateY(0px) rotate(0deg); 
-      opacity: 0.6;
-    }
-    50% { 
-      transform: translateY(-10px) rotate(5deg); 
+      transform: translateY(0px) rotate(0deg) scale(1); 
       opacity: 0.8;
+    }
+    33% { 
+      transform: translateY(-15px) rotate(5deg) scale(1.1); 
+      opacity: 1;
+    }
+    66% { 
+      transform: translateY(-5px) rotate(-3deg) scale(0.95); 
+      opacity: 0.9;
     }
   }
 
   @keyframes rupee-drop {
     0% { 
-      transform: translateY(-100vh) rotate(0deg); 
+      transform: translateY(-120vh) rotate(0deg) scale(0.8); 
       opacity: 0;
     }
-    10% { 
+    5% { 
       opacity: 1;
+      transform: translateY(-100vh) rotate(10deg) scale(1);
     }
-    90% { 
+    95% { 
       opacity: 1;
+      transform: translateY(100vh) rotate(350deg) scale(1.2);
     }
     100% { 
-      transform: translateY(100vh) rotate(360deg); 
+      transform: translateY(120vh) rotate(360deg) scale(0.8); 
+      opacity: 0;
+    }
+  }
+
+  @keyframes rupee-celebration {
+    0% { 
+      transform: translateY(0) rotate(0deg) scale(1); 
+      opacity: 0;
+    }
+    20% { 
+      transform: translateY(-30px) rotate(180deg) scale(1.5); 
+      opacity: 1;
+    }
+    80% { 
+      transform: translateY(200px) rotate(540deg) scale(1.2); 
+      opacity: 0.8;
+    }
+    100% { 
+      transform: translateY(300px) rotate(720deg) scale(0.5); 
       opacity: 0;
     }
   }
@@ -217,13 +360,79 @@
   }
 
   .rupee-float {
-    animation: rupee-float 3s ease-in-out infinite;
+    animation: rupee-float 4s ease-in-out infinite;
     color: var(--accent-primary);
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
   }
 
   .rupee-drop {
-    animation: rupee-drop 4s linear infinite;
+    animation: rupee-drop 6s linear infinite;
     color: var(--accent-primary);
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 0 2px 12px rgba(251, 191, 36, 0.6);
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+  }
+
+  .rupee-celebration {
+    animation: rupee-celebration 3s ease-out infinite;
+    color: var(--accent-primary);
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 2px 15px rgba(251, 191, 36, 0.8);
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 1));
+  }
+
+  /* Enhanced floating rupee animations in header */
+  .header-rupee-1 {
+    position: absolute;
+    top: 5%;
+    left: 15%;
+    font-size: 2rem;
+    opacity: 0.7;
+    animation: rupee-float 5s ease-in-out infinite;
+    animation-delay: 0s;
+    color: var(--accent-primary);
+    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+  }
+
+  .header-rupee-2 {
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    font-size: 1.8rem;
+    opacity: 0.6;
+    animation: rupee-float 4s ease-in-out infinite;
+    animation-delay: 1.5s;
+    color: var(--accent-primary);
+    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+  }
+
+  .header-rupee-3 {
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: rupee-float 6s ease-in-out infinite;
+    animation-delay: 3s;
+    color: var(--accent-primary);
+    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+  }
+
+  .header-rupee-4 {
+    position: absolute;
+    top: 60%;
+    right: 15%;
+    font-size: 1.9rem;
+    opacity: 0.5;
+    animation: rupee-float 5.5s ease-in-out infinite;
+    animation-delay: 2s;
+    color: var(--accent-primary);
+    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
   }
 
   .animate-slide-in-left {
@@ -247,6 +456,22 @@
     
     .space-y-8 > * + * {
       @apply mt-6;
+    }
+
+    .theme-toggle-btn,
+    .pwa-install-btn {
+      padding: 0.5rem;
+    }
+    
+    .theme-toggle-btn svg,
+    .pwa-install-btn svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    /* Smaller rupees on mobile */
+    .header-rupee-1, .header-rupee-2, .header-rupee-3, .header-rupee-4 {
+      font-size: 1.2rem;
     }
   }
 
@@ -328,9 +553,30 @@
 
   /* Achievement badge styles */
   .achievement-badge {
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
-    border: 1px solid rgba(251, 191, 36, 0.3);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(217, 119, 6, 0.15) 100%);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    backdrop-filter: blur(15px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .achievement-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(251, 191, 36, 0.1) 20%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(217, 119, 6, 0.08) 20%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .achievement-badge > * {
+    position: relative;
+    z-index: 2;
   }
 
   /* Tour modal enhancements */
@@ -342,18 +588,6 @@
 
   [data-theme="light"] .tour-modal {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-  }
-
-  /* PWA Install button styling */
-  .pwa-install-btn {
-    background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
-    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .pwa-install-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
   }
 
   /* Text color overrides for theme */

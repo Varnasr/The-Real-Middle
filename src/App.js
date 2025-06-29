@@ -277,17 +277,15 @@ function App() {
   return (
     <div className="min-h-screen text-primary pattern-mandala transition-all duration-300">
       <div className="max-w-6xl mx-auto p-3 sm:p-6">
-        {/* Theme Toggle */}
+        {/* Theme Toggle and PWA Install - Now properly aligned */}
         <ThemeToggle />
+        <PWAInstall />
 
         {/* Guided Tour */}
         <GuidedTour 
           onComplete={() => {}}
           onSkip={() => {}}
         />
-
-        {/* PWA Install Component */}
-        <PWAInstall />
 
         {/* Progress Tracker */}
         {step === 3 && (
@@ -298,39 +296,60 @@ function App() {
           />
         )}
 
-        {/* Celebration Animation */}
+        {/* Enhanced Celebration Animation */}
         {showCelebration && (
           <div className="fixed inset-0 pointer-events-none z-30">
-            {[...Array(12)].map((_, i) => (
+            {/* Multiple waves of larger rupee animations */}
+            {[...Array(20)].map((_, i) => (
               <div
                 key={i}
-                className="absolute text-2xl font-bold rupee-drop"
+                className="absolute font-bold rupee-celebration"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  animationDelay: `${i * 0.2}s`
+                  left: `${5 + (i * 4.5)}%`,
+                  animationDelay: `${i * 0.15}s`,
+                  fontSize: `${2 + Math.random() * 1.5}rem`,
+                  color: i % 3 === 0 ? '#f59e0b' : i % 3 === 1 ? '#d97706' : '#fbbf24'
                 }}
               >
                 ₹
               </div>
             ))}
+            
+            {/* Central burst effect */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="text-6xl font-bold text-amber-400 animate-ping">₹</div>
+            </div>
+            
+            {/* Floating success message */}
+            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 bg-amber-600/90 text-white px-6 py-3 rounded-lg shadow-2xl animate-bounce">
+              <div className="text-lg font-bold">Reality Unlocked! 🎉</div>
+            </div>
           </div>
         )}
 
-        {/* Header */}
-        <div className="text-center mb-6 sm:mb-8 relative">
-          <div className="absolute inset-0 pattern-ikat"></div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4 relative">
+        {/* Enhanced Header */}
+        <div className="text-center mb-6 sm:mb-8 relative min-h-[200px] pattern-mandala">
+          <div className="absolute inset-0 pattern-ikat opacity-30"></div>
+          
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4 relative z-10">
             The Real Middle
           </h1>
-          <p className="text-lg sm:text-xl text-secondary max-w-3xl mx-auto leading-relaxed px-2 relative">
+          <p className="text-lg sm:text-xl text-secondary max-w-3xl mx-auto leading-relaxed px-2 relative z-10">
             Think you're middle class? Discover where you really stand in India's income distribution. 
             An interactive reality check about economic inequality and its impact on Indian society.
           </p>
           
-          {/* Floating rupee animations */}
-          <div className="absolute top-0 left-1/4 text-xl rupee-float opacity-40" style={{animationDelay: '0s'}}>₹</div>
-          <div className="absolute top-10 right-1/4 text-lg rupee-float opacity-30" style={{animationDelay: '1s'}}>₹</div>
-          <div className="absolute bottom-0 left-1/3 text-sm rupee-float opacity-50" style={{animationDelay: '2s'}}>₹</div>
+          {/* Enhanced floating rupee animations - Much larger and more visible */}
+          <div className="header-rupee-1">₹</div>
+          <div className="header-rupee-2">₹</div>
+          <div className="header-rupee-3">₹</div>
+          <div className="header-rupee-4">₹</div>
+          
+          {/* Additional decorative rupees */}
+          <div className="absolute top-[5%] left-[5%] text-2xl text-amber-300 opacity-40 animate-pulse">₹</div>
+          <div className="absolute top-[15%] right-[5%] text-xl text-orange-300 opacity-50 animate-bounce" style={{animationDelay: '1s'}}>₹</div>
+          <div className="absolute bottom-[5%] right-[30%] text-lg text-yellow-300 opacity-60 animate-pulse" style={{animationDelay: '2s'}}>₹</div>
+          <div className="absolute bottom-[15%] left-[10%] text-xl text-amber-400 opacity-45 animate-bounce" style={{animationDelay: '0.5s'}}>₹</div>
         </div>
 
         {step === 1 && (
