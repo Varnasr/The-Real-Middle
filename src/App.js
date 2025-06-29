@@ -514,7 +514,7 @@ function App() {
                 <strong className="text-slate-300">Ideas & Conceptualization:</strong> Yogendra Yadav
               </div>
               <div>
-                <strong className="text-slate-300">Brought to Life by:</strong> Varnas Ramesh
+                <strong className="text-slate-300">Brought to Life by:</strong> Dr. Varna Sri Raman
               </div>
               <div className="text-slate-500 text-xs">
                 Built to promote awareness about income inequality in India
