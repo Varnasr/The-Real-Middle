@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import friendly, educational fonts */
+/* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* ===== CSS VARIABLES ===== */
 :root {
-  /* Dark theme variables (default) */
+  /* Dark theme (default) */
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
   --bg-tertiary: #334155;
@@ -19,16 +20,17 @@
   --border-card: #334155;
   --accent-primary: #f59e0b;
   --accent-secondary: #d97706;
-  /* Traditional Indian colors for patterns */
-  --indian-saffron: rgba(255, 153, 51, 0.15);
-  --indian-orange: rgba(255, 103, 31, 0.12);
-  --indian-red: rgba(205, 92, 92, 0.08);
-  --indian-gold: rgba(255, 215, 0, 0.10);
-  --indian-maroon: rgba(128, 0, 0, 0.06);
+  
+  /* Traditional Indian pattern colors */
+  --indian-saffron: rgba(255, 153, 51, 0.18);
+  --indian-orange: rgba(255, 103, 31, 0.15);
+  --indian-red: rgba(220, 38, 127, 0.10);
+  --indian-gold: rgba(255, 215, 0, 0.12);
+  --indian-maroon: rgba(139, 69, 19, 0.08);
 }
 
 [data-theme="light"] {
-  /* Light theme variables with MUCH better contrast */
+  /* Light theme with proper contrast */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #e2e8f0;
@@ -36,28 +38,28 @@
   --bg-input: #f1f5f9;
   --text-primary: #1e293b;
   --text-secondary: #334155;
-  --text-muted: #475569;  /* Much darker for better visibility */
+  --text-muted: #475569; /* Much darker for visibility */
   --border-color: #cbd5e1;
   --border-card: #e2e8f0;
   --accent-primary: #d97706;
   --accent-secondary: #b45309;
-  /* Traditional Indian colors for light mode patterns */
-  --indian-saffron: rgba(255, 153, 51, 0.12);
-  --indian-orange: rgba(255, 103, 31, 0.08);
-  --indian-red: rgba(205, 92, 92, 0.06);
-  --indian-gold: rgba(255, 215, 0, 0.08);
-  --indian-maroon: rgba(128, 0, 0, 0.04);
+  
+  /* Softer patterns for light mode */
+  --indian-saffron: rgba(255, 153, 51, 0.15);
+  --indian-orange: rgba(255, 103, 31, 0.10);
+  --indian-red: rgba(220, 38, 127, 0.08);
+  --indian-gold: rgba(255, 215, 0, 0.10);
+  --indian-maroon: rgba(139, 69, 19, 0.06);
 }
 
+/* ===== BASE STYLES ===== */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -66,37 +68,31 @@
     min-height: 100vh;
     transition: all 0.3s ease;
     line-height: 1.6;
-    font-weight: 400;
   }
 
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
   }
 
-  /* Improve touch targets for mobile */
-  @media (max-width: 768px) {
-    button {
-      min-height: 44px;
-    }
-    
-    input[type="number"],
-    input[type="text"],
-    select {
-      min-height: 44px;
-      font-size: 16px;
-    }
+  p, span, div {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
   }
 }
 
+/* ===== COMPONENT STYLES ===== */
 @layer components {
+  /* Buttons */
   .btn-primary {
     background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 50%, #fbbf24 100%);
     @apply text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-center;
     box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+    font-family: 'Poppins', sans-serif;
     position: relative;
     overflow: hidden;
-    font-family: 'Poppins', sans-serif;
   }
   
   .btn-primary::before {
@@ -132,7 +128,8 @@
     background-color: var(--border-card);
     transform: translateY(-1px);
   }
-  
+
+  /* Cards */
   .card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-card);
@@ -140,7 +137,8 @@
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
   }
-  
+
+  /* Forms */
   .input-field {
     background-color: var(--bg-input);
     color: var(--text-primary);
@@ -155,7 +153,7 @@
     box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2), 0 0 15px rgba(251, 191, 36, 0.1);
   }
 
-  /* Enhanced Theme Toggle Button */
+  /* Header Buttons */
   .theme-toggle-btn {
     background-color: var(--bg-card);
     border-color: var(--border-card);
@@ -171,634 +169,303 @@
     box-shadow: 0 6px 20px rgba(251, 191, 36, 0.3);
   }
 
-  .theme-toggle-btn svg {
-    transition: transform 0.3s ease;
-  }
-
-  .theme-toggle-btn:hover svg {
-    transform: rotate(180deg);
-  }
-
-  /* Enhanced PWA Install Button */
   .pwa-install-btn {
     background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
     box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
   }
 
   .pwa-install-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
-    background: linear-gradient(135deg, #b45309 0%, var(--accent-secondary) 100%);
   }
 
-  .pwa-install-btn svg {
-    transition: transform 0.3s ease;
+  /* Text Colors */
+  .text-primary { color: var(--text-primary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-muted { 
+    color: var(--text-muted); 
+    font-weight: 500; 
   }
 
-  .pwa-install-btn:hover svg {
-    transform: translateY(-1px);
-  }
-
-  /* Traditional Indian Pattern Backgrounds - Inspired by traditional art */
-  .pattern-mandala {
-    background-image: 
-      /* Central lotus mandala */
-      radial-gradient(circle at center, 
-        transparent 10%, 
-        var(--indian-saffron) 10.5%, 
-        var(--indian-saffron) 11%, 
-        transparent 11.5%),
-      radial-gradient(circle at center, 
-        transparent 18%, 
-        var(--indian-gold) 18.5%, 
-        var(--indian-gold) 19%, 
-        transparent 19.5%),
-      radial-gradient(circle at center, 
-        transparent 26%, 
-        var(--indian-orange) 26.5%, 
-        var(--indian-orange) 27%, 
-        transparent 27.5%),
-      /* Decorative corner mandalas with traditional 8-fold symmetry */
-      radial-gradient(circle at 15% 15%, var(--indian-saffron) 0%, transparent 30%),
-      radial-gradient(circle at 85% 85%, var(--indian-gold) 0%, transparent 30%),
-      radial-gradient(circle at 85% 15%, var(--indian-orange) 0%, transparent 25%),
-      radial-gradient(circle at 15% 85%, var(--indian-red) 0%, transparent 25%),
-      /* Traditional geometric patterns */
-      repeating-conic-gradient(from 0deg at center, 
-        transparent 0deg, 
-        var(--indian-maroon) 45deg, 
-        transparent 90deg);
-    background-size: 180px 180px, 160px 160px, 140px 140px, 100px 100px, 100px 100px, 100px 100px, 100px 100px, 400px 400px;
-    background-position: center, center, center, top left, bottom right, top right, bottom left, center;
-  }
-
-  .pattern-ikat {
-    background-image: 
-      /* Traditional ikat weaving pattern */
-      linear-gradient(45deg, 
-        transparent 20%, 
-        var(--indian-saffron) 20%, 
-        var(--indian-saffron) 40%, 
-        transparent 40%, 
-        transparent 60%, 
-        var(--indian-saffron) 60%, 
-        var(--indian-saffron) 80%, 
-        transparent 80%),
-      linear-gradient(-45deg, 
-        transparent 20%, 
-        var(--indian-orange) 20%, 
-        var(--indian-orange) 40%, 
-        transparent 40%, 
-        transparent 60%, 
-        var(--indian-orange) 60%, 
-        var(--indian-orange) 80%, 
-        transparent 80%),
-      /* Traditional diamond weave */
-      repeating-linear-gradient(90deg, 
-        transparent, 
-        transparent 25px, 
-        var(--indian-gold) 25px, 
-        var(--indian-gold) 27px),
-      /* Traditional border pattern */
-      repeating-linear-gradient(0deg, 
-        transparent, 
-        transparent 25px, 
-        var(--indian-red) 25px, 
-        var(--indian-red) 27px);
-    background-size: 50px 50px, 50px 50px, 80px 80px, 80px 80px;
-  }
-
-  .pattern-block-print {
-    background-image: 
-      /* Traditional block print grid */
-      repeating-linear-gradient(0deg, 
-        transparent, 
-        transparent 18px, 
-        var(--indian-saffron) 18px, 
-        var(--indian-saffron) 20px),
-      repeating-linear-gradient(90deg, 
-        transparent, 
-        transparent 18px, 
-        var(--indian-orange) 18px, 
-        var(--indian-orange) 20px),
-      /* Traditional floral motifs */
-      radial-gradient(circle at 25% 25%, 
-        var(--indian-gold) 2px, 
-        transparent 3px),
-      radial-gradient(circle at 75% 75%, 
-        var(--indian-red) 2px, 
-        transparent 3px),
-      /* Traditional paisley dots */
-      radial-gradient(ellipse 4px 6px at 50% 30%, 
-        var(--indian-maroon) 0%, 
-        transparent 50%);
-    background-size: 70px 70px, 70px 70px, 35px 35px, 35px 35px, 35px 35px;
-    background-position: 0 0, 0 0, 0 0, 17px 17px, 8px 25px;
-  }
-
-  .pattern-paisley {
-    background-image: 
-      /* Traditional paisley shapes */
-      radial-gradient(ellipse 30px 45px at 35% 35%, 
-        var(--indian-saffron) 0%, 
-        var(--indian-saffron) 35%, 
-        transparent 50%),
-      radial-gradient(ellipse 25px 40px at 65% 65%, 
-        var(--indian-gold) 0%, 
-        var(--indian-gold) 35%, 
-        transparent 50%),
-      /* Traditional vine patterns */
-      repeating-linear-gradient(30deg, 
-        transparent, 
-        transparent 40px, 
-        var(--indian-orange) 40px, 
-        var(--indian-orange) 41px),
-      /* Traditional dots and flowers */
-      radial-gradient(circle at 20% 80%, 
-        var(--indian-red) 1.5px, 
-        transparent 2px),
-      radial-gradient(circle at 80% 20%, 
-        var(--indian-maroon) 1.5px, 
-        transparent 2px);
-    background-size: 100px 100px, 80px 80px, 120px 120px, 25px 25px, 25px 25px;
-    background-position: 0 0, 50px 50px, 0 0, 0 0, 12px 12px;
-  }
-
-  /* Enhanced Rupee Currency Animations - Much Larger and More Visible */
-  @keyframes rupee-float {
-    0%, 100% { 
-      transform: translateY(0px) rotate(0deg) scale(1); 
-      opacity: 0.8;
-    }
-    33% { 
-      transform: translateY(-15px) rotate(5deg) scale(1.1); 
-      opacity: 1;
-    }
-    66% { 
-      transform: translateY(-5px) rotate(-3deg) scale(0.95); 
-      opacity: 0.9;
-    }
-  }
-
-  @keyframes rupee-drop {
-    0% { 
-      transform: translateY(-120vh) rotate(0deg) scale(0.8); 
-      opacity: 0;
-    }
-    5% { 
-      opacity: 1;
-      transform: translateY(-100vh) rotate(10deg) scale(1);
-    }
-    95% { 
-      opacity: 1;
-      transform: translateY(100vh) rotate(350deg) scale(1.2);
-    }
-    100% { 
-      transform: translateY(120vh) rotate(360deg) scale(0.8); 
-      opacity: 0;
-    }
-  }
-
-  @keyframes rupee-celebration {
-    0% { 
-      transform: translateY(0) rotate(0deg) scale(1); 
-      opacity: 0;
-    }
-    20% { 
-      transform: translateY(-30px) rotate(180deg) scale(1.5); 
-      opacity: 1;
-    }
-    80% { 
-      transform: translateY(200px) rotate(540deg) scale(1.2); 
-      opacity: 0.8;
-    }
-    100% { 
-      transform: translateY(300px) rotate(720deg) scale(0.5); 
-      opacity: 0;
-    }
-  }
-
-  @keyframes slide-in-left {
-    0% { 
-      transform: translateX(-100%); 
-      opacity: 0;
-    }
-    100% { 
-      transform: translateX(0); 
-      opacity: 1;
-    }
-  }
-
-  .rupee-float {
-    animation: rupee-float 4s ease-in-out infinite;
-    color: var(--accent-primary);
-    font-size: 2rem;
-    font-weight: bold;
-    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
-    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
-  }
-
-  .rupee-drop {
-    animation: rupee-drop 6s linear infinite;
-    color: var(--accent-primary);
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-shadow: 0 2px 12px rgba(251, 191, 36, 0.6);
-    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
-  }
-
-  .rupee-celebration {
-    animation: rupee-celebration 3s ease-out infinite;
-    color: var(--accent-primary);
-    font-size: 3rem;
-    font-weight: bold;
-    text-shadow: 0 2px 15px rgba(251, 191, 36, 0.8);
-    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 1));
-  }
-
-  /* Enhanced floating rupee animations in header */
-  .header-rupee-1 {
-    position: absolute;
-    top: 5%;
-    left: 15%;
-    font-size: 2rem;
-    opacity: 0.7;
-    animation: rupee-float 5s ease-in-out infinite;
-    animation-delay: 0s;
-    color: var(--accent-primary);
-    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
-  }
-
-  .header-rupee-2 {
-    position: absolute;
-    top: 20%;
-    right: 20%;
-    font-size: 1.8rem;
-    opacity: 0.6;
-    animation: rupee-float 4s ease-in-out infinite;
-    animation-delay: 1.5s;
-    color: var(--accent-primary);
-    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
-  }
-
-  .header-rupee-3 {
-    position: absolute;
-    bottom: 10%;
-    left: 25%;
-    font-size: 1.5rem;
-    opacity: 0.8;
-    animation: rupee-float 6s ease-in-out infinite;
-    animation-delay: 3s;
-    color: var(--accent-primary);
-    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
-  }
-
-  .header-rupee-4 {
-    position: absolute;
-    top: 60%;
-    right: 15%;
-    font-size: 1.9rem;
-    opacity: 0.5;
-    animation: rupee-float 5.5s ease-in-out infinite;
-    animation-delay: 2s;
-    color: var(--accent-primary);
-    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
-  }
-
-  .animate-slide-in-left {
-    animation: slide-in-left 0.5s ease-out;
-  }
-
-  /* Mobile-specific improvements */
-  @media (max-width: 640px) {
-    .card {
-      @apply p-3;
-    }
-    
-    .btn-primary,
-    .btn-secondary {
-      @apply py-3 px-4 text-sm;
-    }
-    
-    .space-y-6 > * + * {
-      @apply mt-4;
-    }
-    
-    .space-y-8 > * + * {
-      @apply mt-6;
-    }
-
-    .theme-toggle-btn,
-    .pwa-install-btn {
-      padding: 0.5rem;
-    }
-    
-    .theme-toggle-btn svg,
-    .pwa-install-btn svg {
-      width: 1rem;
-      height: 1rem;
-    }
-
-    /* Smaller rupees on mobile */
-    .header-rupee-1, .header-rupee-2, .header-rupee-3, .header-rupee-4 {
-      font-size: 1.2rem;
-    }
-  }
-
-  /* Ensure charts are responsive */
-  .recharts-wrapper {
-    @apply w-full;
-  }
-
-  /* Improve range input styling */
-  input[type="range"] {
-    @apply h-2 rounded-lg appearance-none cursor-pointer min-h-[44px];
-    background: linear-gradient(to right, var(--accent-secondary) 0%, var(--accent-primary) 50%, #fbbf24 100%);
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
-    @apply appearance-none w-5 h-5 rounded-full cursor-pointer;
-    background-color: var(--accent-primary);
-    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
-  }
-
-  input[type="range"]::-moz-range-thumb {
-    @apply w-5 h-5 rounded-full cursor-pointer border-0;
-    background-color: var(--accent-primary);
-    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
-  }
-
-  /* Progress Tracker Updates */
-  .progress-tracker {
-    background-color: var(--bg-card);
-    border-color: var(--border-card);
-    color: var(--text-primary);
-  }
-
-  /* Indian-inspired loading animation */
-  .mandala-spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(251, 191, 36, 0.1);
-    border-top: 3px solid var(--accent-primary);
-    border-radius: 50%;
-    animation: mandala-spin 1s linear infinite;
-  }
-
-  @keyframes mandala-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  /* Loading states */
-  .loading {
-    @apply opacity-50 pointer-events-none;
-  }
-
-  /* Improved focus states */
-  button:focus,
-  input:focus,
-  select:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--accent-primary), 0 0 0 4px rgba(251, 191, 36, 0.1);
-  }
-
-  /* Better scrollbar styling */
-  ::-webkit-scrollbar {
-    @apply w-2;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: var(--bg-secondary);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, var(--accent-secondary), var(--accent-primary));
-    @apply rounded;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #b45309, var(--accent-secondary));
-  }
-
-  /* Achievement badge styles */
+  /* Achievement Badge */
   .achievement-badge {
     background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(217, 119, 6, 0.15) 100%);
     border: 1px solid rgba(251, 191, 36, 0.4);
     backdrop-filter: blur(15px);
-    position: relative;
-    overflow: hidden;
   }
 
-  .achievement-badge::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 30% 30%, var(--indian-saffron) 20%, transparent 50%),
-      radial-gradient(circle at 70% 70%, var(--indian-gold) 20%, transparent 50%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .achievement-badge > * {
-    position: relative;
-    z-index: 2;
-  }
-
-  /* Tour modal enhancements */
+  /* Tour Modal */
   .tour-modal {
     background: var(--bg-card);
     border-color: var(--border-card);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
-
-  [data-theme="light"] .tour-modal {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Text color classes with proper contrast */
-  .text-primary {
-    color: var(--text-primary);
-  }
-  
-  .text-secondary {
-    color: var(--text-secondary);
-  }
-  
-  .text-muted {
-    color: var(--text-muted);
-    font-weight: 500; /* Slightly bolder for better readability */
-  }
-
-  /* Enhanced typography for better readability */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-
-  p, span, div {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-  }
-
-  /* Light mode specific adjustments */
-  [data-theme="light"] .pattern-mandala,
-  [data-theme="light"] .pattern-ikat,
-  [data-theme="light"] .pattern-block-print,
-  [data-theme="light"] .pattern-paisley {
-    opacity: 0.9;
-  }
-
-  /* Dark mode shadow enhancements */
-  [data-theme="dark"] .card {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-
-  /* Light mode shadow adjustments */
-  [data-theme="light"] .card {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--border-card);
-  }
-
-  /* Light mode text contrast fixes */
-  [data-theme="light"] .text-muted {
-    color: #475569; /* Much darker grey for better visibility */
-    font-weight: 500;
-  }
-
-  [data-theme="light"] .text-secondary {
-    color: #334155; /* Darker secondary text */
-    font-weight: 500;
-  }
 }
-/* Mobile Responsive Fixes - Add this to your index.css */
 
-/* Enhanced mobile responsive positioning for buttons */
+/* ===== TRADITIONAL INDIAN PATTERNS ===== */
+.pattern-mandala {
+  background-image: 
+    radial-gradient(circle at center, transparent 10%, var(--indian-saffron) 10.5%, var(--indian-saffron) 11%, transparent 11.5%),
+    radial-gradient(circle at center, transparent 18%, var(--indian-gold) 18.5%, var(--indian-gold) 19%, transparent 19.5%),
+    radial-gradient(circle at center, transparent 26%, var(--indian-orange) 26.5%, var(--indian-orange) 27%, transparent 27.5%),
+    radial-gradient(circle at 15% 15%, var(--indian-saffron) 0%, transparent 30%),
+    radial-gradient(circle at 85% 85%, var(--indian-gold) 0%, transparent 30%),
+    radial-gradient(circle at 85% 15%, var(--indian-orange) 0%, transparent 25%),
+    radial-gradient(circle at 15% 85%, var(--indian-red) 0%, transparent 25%);
+  background-size: 180px 180px, 160px 160px, 140px 140px, 100px 100px, 100px 100px, 100px 100px, 100px 100px;
+  background-position: center, center, center, top left, bottom right, top right, bottom left;
+}
+
+.pattern-ikat {
+  background-image: 
+    linear-gradient(45deg, transparent 25%, var(--indian-saffron) 25%, var(--indian-saffron) 40%, transparent 40%, transparent 60%, var(--indian-saffron) 60%, var(--indian-saffron) 75%, transparent 75%),
+    linear-gradient(-45deg, transparent 25%, var(--indian-orange) 25%, var(--indian-orange) 40%, transparent 40%, transparent 60%, var(--indian-orange) 60%, var(--indian-orange) 75%, transparent 75%),
+    repeating-linear-gradient(90deg, transparent, transparent 25px, var(--indian-gold) 25px, var(--indian-gold) 27px);
+  background-size: 50px 50px, 50px 50px, 80px 80px;
+}
+
+.pattern-block-print {
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 18px, var(--indian-saffron) 18px, var(--indian-saffron) 20px),
+    repeating-linear-gradient(90deg, transparent, transparent 18px, var(--indian-orange) 18px, var(--indian-orange) 20px),
+    radial-gradient(circle at 25% 25%, var(--indian-gold) 2px, transparent 3px),
+    radial-gradient(circle at 75% 75%, var(--indian-red) 2px, transparent 3px);
+  background-size: 70px 70px, 70px 70px, 35px 35px, 35px 35px;
+  background-position: 0 0, 0 0, 0 0, 17px 17px;
+}
+
+.pattern-paisley {
+  background-image: 
+    radial-gradient(ellipse 30px 45px at 35% 35%, var(--indian-saffron) 0%, var(--indian-saffron) 35%, transparent 50%),
+    radial-gradient(ellipse 25px 40px at 65% 65%, var(--indian-gold) 0%, var(--indian-gold) 35%, transparent 50%),
+    radial-gradient(circle at 20% 80%, var(--indian-red) 1.5px, transparent 2px),
+    radial-gradient(circle at 80% 20%, var(--indian-maroon) 1.5px, transparent 2px);
+  background-size: 100px 100px, 80px 80px, 25px 25px, 25px 25px;
+  background-position: 0 0, 50px 50px, 0 0, 12px 12px;
+}
+
+/* ===== RUPEE ANIMATIONS ===== */
+@keyframes rupee-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.8; }
+  33% { transform: translateY(-15px) rotate(5deg) scale(1.1); opacity: 1; }
+  66% { transform: translateY(-5px) rotate(-3deg) scale(0.95); opacity: 0.9; }
+}
+
+@keyframes rupee-drop {
+  0% { transform: translateY(-120vh) rotate(0deg) scale(0.8); opacity: 0; }
+  5% { opacity: 1; transform: translateY(-100vh) rotate(10deg) scale(1); }
+  95% { opacity: 1; transform: translateY(100vh) rotate(350deg) scale(1.2); }
+  100% { transform: translateY(120vh) rotate(360deg) scale(0.8); opacity: 0; }
+}
+
+@keyframes rupee-celebration {
+  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0; }
+  20% { transform: translateY(-30px) rotate(180deg) scale(1.5); opacity: 1; }
+  80% { transform: translateY(200px) rotate(540deg) scale(1.2); opacity: 0.8; }
+  100% { transform: translateY(300px) rotate(720deg) scale(0.5); opacity: 0; }
+}
+
+@keyframes slide-in-left {
+  0% { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.rupee-float {
+  animation: rupee-float 4s ease-in-out infinite;
+  color: var(--accent-primary);
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+}
+
+.rupee-drop {
+  animation: rupee-drop 6s linear infinite;
+  color: var(--accent-primary);
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 0 2px 12px rgba(251, 191, 36, 0.6);
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+}
+
+.rupee-celebration {
+  animation: rupee-celebration 3s ease-out infinite;
+  color: var(--accent-primary);
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 0 2px 15px rgba(251, 191, 36, 0.8);
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 1));
+}
+
+/* Header rupee positioning */
+.header-rupee-1 {
+  position: absolute;
+  top: 5%;
+  left: 15%;
+  font-size: 2rem;
+  opacity: 0.7;
+  animation: rupee-float 5s ease-in-out infinite;
+  animation-delay: 0s;
+  color: var(--accent-primary);
+  text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+}
+
+.header-rupee-2 {
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  font-size: 1.8rem;
+  opacity: 0.6;
+  animation: rupee-float 4s ease-in-out infinite;
+  animation-delay: 1.5s;
+  color: var(--accent-primary);
+  text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+}
+
+.header-rupee-3 {
+  position: absolute;
+  bottom: 10%;
+  left: 25%;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  animation: rupee-float 6s ease-in-out infinite;
+  animation-delay: 3s;
+  color: var(--accent-primary);
+  text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+}
+
+.header-rupee-4 {
+  position: absolute;
+  top: 60%;
+  right: 15%;
+  font-size: 1.9rem;
+  opacity: 0.5;
+  animation: rupee-float 5.5s ease-in-out infinite;
+  animation-delay: 2s;
+  color: var(--accent-primary);
+  text-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.5s ease-out;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
-  /* Move buttons down on mobile to avoid header overlap */
-  .theme-toggle-btn {
-    top: 1rem !important;
-    right: 4rem !important;
-    padding: 0.4rem !important;
-    z-index: 50;
+  /* Main content spacing */
+  .max-w-6xl.mx-auto {
+    padding-top: 3.5rem !important;
   }
   
-  .pwa-install-btn {
-    top: 1rem !important;
-    right: 0.5rem !important;
-    padding: 0.4rem !important;
-    z-index: 50;
+  /* Header adjustments */
+  .text-center.mb-6 {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
   }
   
-  .theme-toggle-btn svg,
-  .pwa-install-btn svg {
-    width: 0.9rem !important;
-    height: 0.9rem !important;
-  }
-  
-  /* Add top padding to main content to avoid button overlap */
-  .min-h-screen > div {
-    padding-top: 4rem !important;
-  }
-  
-  /* Adjust header spacing on mobile */
-  .text-center.mb-6.sm\:mb-8 {
-    margin-top: 1rem !important;
-    margin-bottom: 1.5rem !important;
-  }
-  
-  /* Make sure header title has enough space */
-  .text-3xl.sm\:text-4xl.md\:text-5xl {
-    margin-top: 1rem !important;
+  /* Typography scaling */
+  h1 {
     font-size: 1.75rem !important;
-    line-height: 1.2;
+    line-height: 1.2 !important;
+    margin-bottom: 0.75rem !important;
   }
   
-  /* Adjust header description on mobile */
-  .text-lg.sm\:text-xl {
+  .text-lg {
     font-size: 0.95rem !important;
-    line-height: 1.5;
-    padding: 0 1rem;
+    line-height: 1.4 !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Button sizing */
+  .btn-primary,
+  .btn-secondary {
+    @apply py-3 px-4 text-sm;
+  }
+  
+  .card {
+    @apply p-3;
+  }
+  
+  /* Smaller rupees on mobile */
+  .header-rupee-1, .header-rupee-2, .header-rupee-3, .header-rupee-4 {
+    font-size: 1.2rem;
+  }
+  
+  /* Ensure buttons are always visible */
+  .theme-toggle-btn,
+  .pwa-install-btn {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    z-index: 9999 !important;
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 40px;
+    min-height: 40px;
   }
 }
 
-/* Extra small screens - stack buttons vertically */
 @media (max-width: 480px) {
-  .theme-toggle-btn {
-    top: 0.75rem !important;
-    right: 0.75rem !important;
-    padding: 0.35rem !important;
+  .max-w-6xl.mx-auto {
+    padding-top: 3.75rem !important;
   }
   
-  .pwa-install-btn {
-    top: 3rem !important;
-    right: 0.75rem !important;
-    padding: 0.35rem !important;
-  }
-  
-  /* Even more top padding for very small screens */
-  .min-h-screen > div {
-    padding-top: 5rem !important;
-  }
-  
-  /* Smaller header on very small screens */
-  .text-3xl.sm\:text-4xl.md\:text-5xl {
+  h1 {
     font-size: 1.5rem !important;
-    margin-top: 0.5rem !important;
   }
   
-  .text-lg.sm\:text-xl {
+  .text-lg {
     font-size: 0.875rem !important;
-    padding: 0 0.75rem;
   }
 }
 
-/* Landscape mobile orientation fixes */
-@media (max-width: 768px) and (orientation: landscape) {
-  .theme-toggle-btn {
-    top: 0.5rem !important;
-    right: 3.5rem !important;
-  }
-  
-  .pwa-install-btn {
-    top: 0.5rem !important;
-    right: 0.5rem !important;
-  }
-  
-  .min-h-screen > div {
-    padding-top: 3rem !important;
-  }
+/* ===== UTILITY CLASSES ===== */
+.recharts-wrapper {
+  @apply w-full;
 }
 
-/* Safe area adjustments for modern mobile devices with notches */
-@supports (padding: max(0px)) {
-  @media (max-width: 768px) {
-    .theme-toggle-btn {
-      top: max(1rem, env(safe-area-inset-top)) !important;
-    }
-    
-    .pwa-install-btn {
-      top: max(1rem, env(safe-area-inset-top)) !important;
-    }
-    
-    .min-h-screen > div {
-      padding-top: max(4rem, calc(env(safe-area-inset-top) + 3rem)) !important;
-    }
-  }
+input[type="range"] {
+  @apply h-2 rounded-lg appearance-none cursor-pointer min-h-[44px];
+  background: linear-gradient(to right, var(--accent-secondary) 0%, var(--accent-primary) 50%, #fbbf24 100%);
 }
 
-/* Progress tracker positioning fix on mobile */
-@media (max-width: 768px) {
-  .fixed.top-4.left-4 {
-    top: 4.5rem !important;
-    left: 0.75rem !important;
-    z-index: 30;
-  }
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-5 h-5 rounded-full cursor-pointer;
+  background-color: var(--accent-primary);
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+}
+
+.loading {
+  @apply opacity-50 pointer-events-none;
+}
+
+button:focus,
+input:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-primary), 0 0 0 4px rgba(251, 191, 36, 0.1);
+}
+
+/* ===== THEME-SPECIFIC OVERRIDES ===== */
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400,
+[data-theme="light"] .text-slate-500 {
+  color: #374151 !important;
+  font-weight: 500;
+}
+
+[data-theme="light"] .text-slate-200 {
+  color: #1f2937 !important;
+  font-weight: 500;
+}
+
+[data-theme="light"] .card {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .card {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
