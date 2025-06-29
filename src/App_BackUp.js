@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { TrendingUp, Users, DollarSign, AlertCircle, BookOpen, Heart, MapPin, ArrowLeftRight } from 'lucide-react';
 
@@ -10,9 +10,6 @@ import RuralUrbanComparison from './components/RuralUrbanComparison';
 import IntergenerationalPovertyTrap from './components/IntergenerationalPoverty';
 import IncomeComparison from './components/IncomeComparison';
 import DataSources from './components/DataSources';
-import GuidedTour from './components/GuidedTour';
-import PWAInstall from './components/PWAInstall';
-import ProgressTracker from './components/ProgressTracker';
 
 function App() {
   const [step, setStep] = useState(1);
@@ -27,9 +24,6 @@ function App() {
   });
   const [results, setResults] = useState(null);
   const [showReveal, setShowReveal] = useState(false);
-  const [showTour, setShowTour] = useState(false);
-  const [visitedSections, setVisitedSections] = useState(['overview']);
-  const [showCelebration, setShowCelebration] = useState(false);
 
   // Latest 2023-24 Indian income distribution data
   const incomeDistribution = [
@@ -42,33 +36,6 @@ function App() {
     { bracket: '₹1L-2L', population: 0.6, color: '#0284c7', min: 100000, max: 200000, description: 'Upper class' },
     { bracket: '₹2L+', population: 0.1, color: '#7c3aed', min: 200000, max: Infinity, description: 'Elite/Ultra rich' }
   ];
-
-  // Load saved progress
-  useEffect(() => {
-    const savedProgress = localStorage.getItem('realMiddleProgress');
-    if (savedProgress) {
-      const progress = JSON.parse(savedProgress);
-      setVisitedSections(progress.visitedSections || ['overview']);
-    }
-
-    // Register service worker for PWA
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-          console.log('SW registered: ', registration);
-        })
-        .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
-        });
-    }
-  }, []);
-
-  // Track section visits
-  useEffect(() => {
-    if (currentFeature && !visitedSections.includes(currentFeature)) {
-      setVisitedSections(prev => [...prev, currentFeature]);
-    }
-  }, [currentFeature, visitedSections]);
 
   const calculatePercentile = (income) => {
     let percentile = 0;
@@ -128,16 +95,7 @@ function App() {
       isReallyMiddleClass: percentile >= 50 && percentile < 90,
       surpriseFacts: generateSurpriseFacts(income, percentile)
     });
-    
-    // Mark assessment as completed
-    localStorage.setItem('realMiddleAssessmentCompleted', 'true');
     setStep(3);
-
-    // Show celebration for significant revelations
-    if (income >= 25000 && userData.perception === 'Middle Class') {
-      setShowCelebration(true);
-      setTimeout(() => setShowCelebration(false), 3000);
-    }
   };
 
   const generateSurpriseFacts = (income, percentile) => {
@@ -196,64 +154,21 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 pattern-mandala">
+    <div className="min-h-screen bg-slate-900 text-slate-100">
       <div className="max-w-6xl mx-auto p-3 sm:p-6">
-        {/* Guided Tour */}
-        <GuidedTour 
-          onComplete={() => setShowTour(false)}
-          onSkip={() => setShowTour(false)}
-        />
-
-        {/* PWA Install Component */}
-        <PWAInstall />
-
-        {/* Progress Tracker */}
-        {step === 3 && (
-          <ProgressTracker 
-            visitedSections={visitedSections}
-            currentSection={currentFeature}
-            assessmentCompleted={!!results}
-          />
-        )}
-
-        {/* Celebration Animation */}
-        {showCelebration && (
-          <div className="fixed inset-0 pointer-events-none z-30">
-            {[...Array(12)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute text-2xl font-bold rupee-drop"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  animationDelay: `${i * 0.2}s`,
-                  color: '#fbbf24'
-                }}
-              >
-                ₹
-              </div>
-            ))}
-          </div>
-        )}
-
         {/* Header */}
-        <div className="text-center mb-6 sm:mb-8 relative">
-          <div className="absolute inset-0 pattern-ikat opacity-5"></div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 relative">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
             The Real Middle
           </h1>
-          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-2 relative">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-2">
             Think you're middle class? Discover where you really stand in India's income distribution. 
             An interactive reality check about economic inequality and its impact on Indian society.
           </p>
-          
-          {/* Floating rupee animations */}
-          <div className="absolute top-0 left-1/4 text-amber-400/20 text-xl rupee-float" style={{animationDelay: '0s'}}>₹</div>
-          <div className="absolute top-10 right-1/4 text-amber-400/20 text-lg rupee-float" style={{animationDelay: '1s'}}>₹</div>
-          <div className="absolute bottom-0 left-1/3 text-amber-400/20 text-sm rupee-float" style={{animationDelay: '2s'}}>₹</div>
         </div>
 
         {step === 1 && (
-          <div className="card tour-modal">
+          <div className="card">
             <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6 text-center">
               What economic class do you think you belong to?
             </h2>
@@ -265,7 +180,7 @@ function App() {
                     handleInputChange('perception', option);
                     setStep(2);
                   }}
-                  className="p-3 sm:p-4 bg-slate-700 border border-slate-600 rounded-lg hover:border-amber-400 hover:bg-slate-600 transition-all duration-200 font-medium text-white text-sm sm:text-base pattern-block-print"
+                  className="p-3 sm:p-4 bg-slate-700 border border-slate-600 rounded-lg hover:border-amber-400 hover:bg-slate-600 transition-all duration-200 font-medium text-white text-sm sm:text-base"
                 >
                   {option}
                 </button>
@@ -275,7 +190,7 @@ function App() {
         )}
 
         {step === 2 && (
-          <div className="card tour-modal">
+          <div className="card">
             <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">
               Please provide your financial details
             </h2>
@@ -344,7 +259,7 @@ function App() {
         {step === 3 && results && (
           <div className="space-y-6 sm:space-y-8">
             {/* Results Header */}
-            <div className="card achievement-badge">
+            <div className="card">
               <div className="text-center mb-4 sm:mb-6">
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">Your Economic Reality</h2>
                 <div className="bg-slate-700 px-4 py-2 sm:px-6 sm:py-3 rounded-lg inline-block border border-slate-600">
@@ -354,7 +269,7 @@ function App() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-                <div className="text-center p-4 sm:p-6 bg-slate-700 rounded-lg border border-slate-600 pattern-paisley">
+                <div className="text-center p-4 sm:p-6 bg-slate-700 rounded-lg border border-slate-600">
                   <TrendingUp className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-4 text-amber-400" />
                   <div className="text-lg sm:text-2xl font-bold mb-1 sm:mb-2" style={{ color: results.classInfo.color }}>
                     {results.classInfo.label}
@@ -362,7 +277,7 @@ function App() {
                   <div className="text-slate-400 text-sm sm:text-base">Your actual class</div>
                 </div>
                 
-                <div className="text-center p-4 sm:p-6 bg-slate-700 rounded-lg border border-slate-600 pattern-paisley">
+                <div className="text-center p-4 sm:p-6 bg-slate-700 rounded-lg border border-slate-600">
                   <DollarSign className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-4 text-green-400" />
                   <div className="text-lg sm:text-2xl font-bold text-green-400 mb-1 sm:mb-2">
                     {results.percentile.toFixed(1)}%
@@ -370,7 +285,7 @@ function App() {
                   <div className="text-slate-400 text-sm sm:text-base">Income percentile</div>
                 </div>
                 
-                <div className="text-center p-4 sm:p-6 bg-slate-700 rounded-lg border border-slate-600 pattern-paisley">
+                <div className="text-center p-4 sm:p-6 bg-slate-700 rounded-lg border border-slate-600">
                   <Users className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-4 text-blue-400" />
                   <div className="text-lg sm:text-2xl font-bold text-blue-400 mb-1 sm:mb-2">
                     {(results.peopleAbove / 1000000).toFixed(0)}M
@@ -383,7 +298,7 @@ function App() {
                 <div className="text-center">
                   <button
                     onClick={() => setShowReveal(true)}
-                    className="btn-primary text-sm sm:text-base pwa-install-btn"
+                    className="btn-primary text-sm sm:text-base"
                   >
                     Show Reality Check
                   </button>
@@ -442,7 +357,7 @@ function App() {
                   <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6 text-center">
                     India's Income Distribution (2023-24 Data)
                   </h3>
-                  <div className="bg-slate-700/50 p-3 sm:p-6 rounded-lg pattern-block-print">
+                  <div className="bg-slate-700/50 p-3 sm:p-6 rounded-lg">
                     <ResponsiveContainer width="100%" height={300}>
                       <BarChart data={chartData} margin={{ top: 20, right: 10, left: 10, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
@@ -545,7 +460,7 @@ function App() {
             </div>
 
             {/* Call to Action */}
-            <div className="card text-center pattern-ikat">
+            <div className="card text-center">
               <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3 sm:mb-4">Understanding Leads to Action</h3>
               <p className="text-slate-300 mb-4 sm:mb-6 max-w-3xl mx-auto text-sm sm:text-base">
                 Income inequality in India is not just statistics—it represents millions of lives limited by circumstances of birth. 
@@ -565,7 +480,6 @@ function App() {
                   });
                   setResults(null);
                   setShowReveal(false);
-                  setVisitedSections(['overview']);
                 }}
                 className="btn-secondary text-sm sm:text-base"
               >
@@ -576,7 +490,7 @@ function App() {
         )}
 
         {/* Branding Footer */}
-        <footer className="mt-12 sm:mt-16 border-t border-slate-700 pt-6 sm:pt-8 pattern-block-print">
+        <footer className="mt-12 sm:mt-16 border-t border-slate-700 pt-6 sm:pt-8">
           <div className="text-center space-y-3 sm:space-y-4">
             {/* Impact Mojo Branding */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
@@ -600,7 +514,7 @@ function App() {
                 <strong className="text-slate-300">Ideas & Conceptualization:</strong> Yogendra Yadav
               </div>
               <div>
-                <strong className="text-slate-300">Brought to Life by:</strong> Varna Sri Raman
+                <strong className="text-slate-300">Brought to Life by:</strong> Dr. Varna Sri Raman
               </div>
               <div className="text-slate-500 text-xs">
                 Built to promote awareness about income inequality in India
