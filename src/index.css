@@ -1,9 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Google Fonts Import */
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Tailwind 4 theme — migrated from tailwind.config.js */
+@theme {
+  --color-slate-750: #334155;
+  --color-slate-850: #1a202c;
+
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-slide-in-up: slide-in-up 0.8s ease-out;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-in-up {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); }
+    100% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
+  }
+}
 
 /* ===== CSS VARIABLES ===== */
 :root {
@@ -30,7 +53,6 @@
 }
 
 [data-theme="light"] {
-  /* Light theme with proper contrast */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #e2e8f0;
@@ -38,13 +60,12 @@
   --bg-input: #f1f5f9;
   --text-primary: #1e293b;
   --text-secondary: #334155;
-  --text-muted: #475569; /* Much darker for visibility */
+  --text-muted: #475569;
   --border-color: #cbd5e1;
   --border-card: #e2e8f0;
   --accent-primary: #d97706;
   --accent-secondary: #b45309;
   
-  /* Softer patterns for light mode */
   --indian-saffron: rgba(255, 153, 51, 0.15);
   --indian-orange: rgba(255, 103, 31, 0.10);
   --indian-red: rgba(220, 38, 127, 0.08);
@@ -70,7 +91,6 @@
     line-height: 1.6;
   }
 
-  /* Typography */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -85,7 +105,6 @@
 
 /* ===== COMPONENT STYLES ===== */
 @layer components {
-  /* Buttons */
   .btn-primary {
     background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 50%, #fbbf24 100%);
     @apply text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-center;
@@ -129,7 +148,6 @@
     transform: translateY(-1px);
   }
 
-  /* Cards */
   .card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-card);
@@ -138,7 +156,6 @@
     transition: all 0.3s ease;
   }
 
-  /* Forms */
   .input-field {
     background-color: var(--bg-input);
     color: var(--text-primary);
@@ -153,7 +170,6 @@
     box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2), 0 0 15px rgba(251, 191, 36, 0.1);
   }
 
-  /* Header Buttons */
   .theme-toggle-btn {
     background-color: var(--bg-card);
     border-color: var(--border-card);
@@ -180,7 +196,6 @@
     box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
   }
 
-  /* Text Colors */
   .text-primary { color: var(--text-primary); }
   .text-secondary { color: var(--text-secondary); }
   .text-muted { 
@@ -188,14 +203,12 @@
     font-weight: 500; 
   }
 
-  /* Achievement Badge */
   .achievement-badge {
     background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(217, 119, 6, 0.15) 100%);
     border: 1px solid rgba(251, 191, 36, 0.4);
     backdrop-filter: blur(15px);
   }
 
-  /* Tour Modal */
   .tour-modal {
     background: var(--bg-card);
     border-color: var(--border-card);
@@ -298,7 +311,6 @@
   filter: drop-shadow(0 0 10px rgba(251, 191, 36, 1));
 }
 
-/* Header rupee positioning */
 .header-rupee-1 {
   position: absolute;
   top: 5%;
@@ -353,18 +365,15 @@
 
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
-  /* Main content spacing */
   .max-w-6xl.mx-auto {
     padding-top: 3.5rem !important;
   }
   
-  /* Header adjustments */
   .text-center.mb-6 {
     margin-top: 0.5rem;
     margin-bottom: 1rem;
   }
   
-  /* Typography scaling */
   h1 {
     font-size: 1.75rem !important;
     line-height: 1.2 !important;
@@ -378,7 +387,6 @@
     padding-right: 1rem;
   }
   
-  /* Button sizing */
   .btn-primary,
   .btn-secondary {
     @apply py-3 px-4 text-sm;
@@ -388,12 +396,10 @@
     @apply p-3;
   }
   
-  /* Smaller rupees on mobile */
   .header-rupee-1, .header-rupee-2, .header-rupee-3, .header-rupee-4 {
     font-size: 1.2rem;
   }
   
-  /* Ensure buttons are always visible */
   .theme-toggle-btn,
   .pwa-install-btn {
     display: block !important;
