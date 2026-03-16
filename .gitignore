@@ -30,3 +30,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Added by git standards propagation
+Thumbs.db
+build/
+dist/
+*.swp
