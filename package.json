@@ -21,7 +21,8 @@
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "browserslist": {
     "production": [
