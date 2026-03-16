@@ -3,17 +3,13 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
-    labels:
-      - "dependencies"
-      - "npm"
-
+      interval: "monthly"
+    labels: ["dependencies"]
+    open-pull-requests-limit: 3
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
-    labels:
-      - "dependencies"
-      - "github-actions"
+      interval: "monthly"
+    labels: ["dependencies","ci"]
+    open-pull-requests-limit: 2
+
