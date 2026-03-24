@@ -1,87 +1,132 @@
-# The Real Middle - India Income Reality Check
+# The Real Middle — India Income Reality Check
 
-**🎯 Think you're middle class? Discover where you really stand in India's income distribution.**
+[![Website](https://img.shields.io/badge/Website-therealmiddle.netlify.app-7C3AED)](https://therealmiddle.netlify.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite)](https://vitejs.dev)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/Varnasr/The-Real-Middle)](https://github.com/Varnasr/The-Real-Middle/commits/main)
+[![Part of ImpactMojo](https://img.shields.io/badge/Part%20of-ImpactMojo-orange)](https://www.impactmojo.in)
 
-An interactive game that reveals the truth about economic class in India. Using the latest government data and academic research, this tool shows users their actual position in India's income distribution - often surprising those who consider themselves "middle class."
+**Think you're middle class? Discover where you really stand in India's income distribution.**
 
-## What is "The Real Middle"?
+An interactive tool that uses real government data to reveal the gap between perceived and actual economic position in India — built for the [ImpactMojo](https://www.impactmojo.in) platform.
 
-"The Real Middle" challenges misconceptions about economic class in India. Most upper-income Indians believe they're "middle class" when they're actually in the top 10% or even top 1% of earners. This interactive reality check uses real data to show where you truly stand.
+**Live at [therealmiddle.netlify.app](https://therealmiddle.netlify.app)**
 
-## Features
-
-- **Reality Check Calculator**: Discover your real economic position in India
-- **Budget Challenge**: Try to survive on median Indian income (₹9,000/month)
-- **Healthcare Cost Analysis**: Understand medical expenses impact on different income levels
-- **Education Barriers**: Explore cost barriers to education for the poor
-- **Rural vs Urban Comparison**: Compare living conditions across India
-- **Poverty Cycle Analysis**: Understand intergenerational poverty traps
-- **Academic Sources**: Complete transparency with peer-reviewed research sources
-
-## Data Sources
-
-Based on:
-- **Income and Wealth Inequality in India, 1922-2023** by Bharti, Chancel, Piketty, Somanchi (World Inequality Lab 2024)
-- Periodic Labour Force Survey (PLFS) 2023-24
-- Economic Survey 2024-25
-- Academic research from peer-reviewed journals
-
-## Quick Start
-
-### Prerequisites
-- Node.js 16+ 
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/Varnasr/The-Real-Middle.git
-cd The-Real-Middle
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start development server:
-```bash
-npm start
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## Deployment to Netlify
-
-### Build the project:
-```bash
-npm run build
-```
-
-### Deploy:
-- Build command: `npm run build`
-- Publish directory: `build`
-
-## Key Findings
-
-- **Median income in India**: ₹9,000/month
-- **Top 1% income share**: 22.6% of total national income
-- **Bottom 50%**: Earn only 15% of national income
-- **Reality check**: If you earn ₹25,000+/month, you're in the top 10%
-
-## Academic Use
-
-This tool is designed for educational and research purposes. All data sources are cited and verifiable. For academic papers, please cite the original research sources rather than this visualization tool.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit pull requests or open issues for bugs and feature requests.
-
-## License
-
-MIT License - see LICENSE file for details
+---
 
 ## About
 
-Created to promote awareness about income inequality in India and challenge misconceptions about economic class. Part of ongoing research into development economics and social mobility.
+Most upper-income Indians believe they're "middle class" when they're actually in the top 10% — or even the top 1% — of earners. *The Real Middle* uses real data from the PLFS, NSSO, and academic research to show users exactly where they stand.
+
+This is not commentary. It is data.
+
+---
+
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| **Income Reality Check** | Enter your household income and see your exact percentile in India's distribution |
+| **Budget Challenge** | Try to survive on India's median income (₹9,000/month) — allocate across rent, food, health, education |
+| **Healthcare Cost Analysis** | How different income levels experience the same medical emergency |
+| **Education Barriers** | The real cost of education at each income decile |
+| **Rural vs Urban Comparison** | Purchasing power and living standards across geographies |
+| **Poverty Cycle Analysis** | Intergenerational poverty trap modelling |
+| **Academic Sources** | Full transparency — every data point cites peer-reviewed research or official surveys |
+| **Responsive Design** | Built with React + Tailwind — works on all screen sizes |
+
+---
+
+## Data Sources
+
+| Source | Indicators Used |
+|--------|----------------|
+| [PLFS (Periodic Labour Force Survey)](https://mospi.gov.in/web/plfs) | Income distribution, employment, wages |
+| [NSSO Household Surveys](https://mospi.gov.in/nsso) | Consumption, expenditure, poverty |
+| [World Inequality Database (WID)](https://wid.world/country/india/) | Top income shares, wealth concentration |
+| [NITI Aayog Multidimensional Poverty Index](https://niti.gov.in/mpi) | Poverty headcounts by state |
+| [RBI Household Finance Committee](https://rbidocs.rbi.org.in) | Wealth distribution data |
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| Framework | React 19 | Component-based UI |
+| Charts | Recharts 3 | Income distribution visualisations |
+| Icons | Lucide React | UI iconography |
+| Styling | Tailwind CSS 4 | Utility-first responsive design |
+| Build | Vite 6 | Fast development and build tooling |
+| Hosting | Netlify | Auto-deploy from GitHub |
+
+---
+
+## Project Structure
+
+```
+The-Real-Middle/
+├── index.html              # HTML entry point
+├── vite.config.js          # Vite build configuration
+├── package.json            # Dependencies and scripts
+├── src/                    # React source code
+│   ├── App.jsx             # Root component
+│   ├── components/         # Feature components (calculator, budget, charts)
+│   └── data/               # Income distribution data and survey constants
+├── public/                 # Static assets
+├── CITATION.cff            # Citation metadata
+├── LICENSE
+└── README.md
+```
+
+---
+
+## Local Development
+
+```bash
+git clone https://github.com/Varnasr/The-Real-Middle.git
+cd The-Real-Middle
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+```bash
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+---
+
+## Part of the ImpactMojo Ecosystem
+
+*The Real Middle* is a standalone interactive tool within [ImpactMojo](https://www.impactmojo.in)'s suite of economics education resources.
+
+**Related repositories:**
+- [ImpactMojo](https://github.com/Varnasr/ImpactMojo) — Main platform
+- [someperspective](https://github.com/Varnasr/someperspective) — India's political economy 2004–2025
+- [india-dev-indicators](https://github.com/Varnasr/india-dev-indicators) — GDP, HDI, and development indicators dashboard
+
+---
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+## Citation
+
+```
+Sri Raman, V. (2025). The Real Middle: India Income Reality Check [Software].
+ImpactMojo. https://github.com/Varnasr/The-Real-Middle
+```
