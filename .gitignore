@@ -36,4 +36,7 @@ Thumbs.db
 build/
 dist/
 *.swp
-package-lock.json
+# package-lock.json is committed, as in every other Node repository in this
+# estate (7 of 9 track one). Ignoring it here meant CI and Netlify resolved
+# react, vite, recharts and tailwind afresh on every build inside their ^
+# ranges, so a build could break with no commit behind it.

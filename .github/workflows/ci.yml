@@ -10,15 +10,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22'
+          cache: npm
 
+      # `npm ci` rather than `npm install`: it installs exactly what
+      # package-lock.json records and fails if the lockfile and package.json
+      # disagree. Until 2026-09-22 there was no lockfile at all, so every CI run
+      # and every deploy resolved react, vite, recharts and tailwind afresh
+      # inside their `^` ranges. A build that passed yesterday could fail today
+      # with no commit in between, and a compromised transitive release would
+      # land silently.
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
