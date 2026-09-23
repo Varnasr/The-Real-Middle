@@ -1,7 +1,9 @@
-@import "tailwindcss";
-
-/* Import Google Fonts */
+/* Google Fonts first: an @import after any rule is invalid and is dropped,
+   so the site fell back to a system font. Tailwind's own import expands to
+   rules, which is what pushed this one out of position. */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
 
 /* Tailwind 4 theme — migrated from tailwind.config.js */
 @theme {
