@@ -6,7 +6,7 @@
   "description": "The Real Middle - Discover where you really stand in India's income distribution",
   "homepage": "https://therealmiddle.netlify.app",
   "dependencies": {
-    "lucide-react": "^1.47.0",
+    "lucide-react": "^1.48.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^3.0.0"
