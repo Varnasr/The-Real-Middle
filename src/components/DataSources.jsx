@@ -20,11 +20,6 @@ const DataSources = () => {
 
   return (
     <div className="space-y-8">
-      <div className="bg-blue-900/20 border border-blue-700/50 rounded-lg p-6">
-        <h4 className="text-blue-300 font-semibold mb-3">Academic Transparency</h4>
-        <p className="text-slate-300 text-sm">This tool is based on peer-reviewed research and official government statistics. All sources are verifiable and follow established academic methodologies for studying income inequality.</p>
-      </div>
-
       <div className="space-y-6">
         <h4 className="text-xl font-semibold text-white">Data Sources</h4>
         {primarySources.map((category, categoryIndex) => (
