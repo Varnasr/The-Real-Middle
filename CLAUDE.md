@@ -3,7 +3,9 @@
 Shared engineering standard: @.claude/engineering-standards.md. It applies to all work in this repository. This file adds what is specific to the project, and wins where the two disagree.
 
 Interactive tool showing where a household sits in India's income distribution.
-React, Vite, Recharts, Tailwind. Deployed on Netlify at therealmiddle.netlify.app.
+React, Vite, Recharts, Tailwind.
+
+**Superseded and not deployed.** The game readers play is `Games/real-middle-india.html` in the ImpactMojo repository, served at https://www.impactmojo.in/games/real-middle-india.html. The Netlify site therealmiddle.netlify.app no longer exists (it answered 404 on 31 October 2026). Do not add features here; make the change in ImpactMojo.
 
 ## Commands
 
