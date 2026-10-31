@@ -724,6 +724,29 @@ function App() {
               </div>
             </div>
             
+            {/* Contact line */}
+            <p className="text-sm max-w-3xl mx-auto leading-relaxed" style={{color: 'var(--text-secondary)'}}>
+              Need help setting out your story, what sets your work apart, the context, the return on investment and the projections? Pinpoint Ventures can help. Write to{' '}
+              <a
+                href="mailto:hello@pinpointventures.in?subject=Enquiry%20from%20therealmiddle.netlify.app"
+                className="underline"
+                style={{color: 'var(--text-primary)'}}
+              >
+                hello@pinpointventures.in
+              </a>{' '}
+              or message on{' '}
+              <a
+                href="https://wa.me/919871777110?text=Hi%20Pinpoint%20Ventures%2C%20I%20found%20you%20through%20therealmiddle.netlify.app.%20I%27d%20like%20to%20discuss%20a%20research%20or%20advisory%20engagement."
+                target="_blank"
+                rel="noopener"
+                className="underline"
+                style={{color: 'var(--text-primary)'}}
+              >
+                WhatsApp
+              </a>
+              .
+            </p>
+
             {/* Legal & Terms Reference */}
             <div className="text-xs pt-3 sm:pt-4 border-t space-y-2" style={{borderColor: 'var(--border-color)', color: 'var(--text-muted)'}}>
               <div>
