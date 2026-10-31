@@ -1,6 +1,6 @@
 # The Real Middle — India Income Reality Check
 
-[![Website](https://img.shields.io/badge/Website-therealmiddle.netlify.app-7C3AED)](https://therealmiddle.netlify.app)
+[![Play it](https://img.shields.io/badge/Play-on%20ImpactMojo-7C3AED)](https://www.impactmojo.in/games/real-middle-india.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite)](https://vitejs.dev)
@@ -11,7 +11,7 @@
 
 An interactive tool that uses real government data to reveal the gap between perceived and actual economic position in India — built for the [ImpactMojo](https://www.impactmojo.in) platform.
 
-**Live at [therealmiddle.netlify.app](https://therealmiddle.netlify.app)**
+**Superseded.** The game is now played on ImpactMojo at [impactmojo.in/games/real-middle-india.html](https://www.impactmojo.in/games/real-middle-india.html). This repository holds the earlier standalone React version, which is no longer deployed; its Netlify address, therealmiddle.netlify.app, no longer answers. Make changes to the game in the [ImpactMojo repository](https://github.com/ImpactMojo/ImpactMojo), in `Games/real-middle-india.html`.
 
 ---
 
